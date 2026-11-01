@@ -1,0 +1,184 @@
+{
+  "steps": [
+    {
+      "stage": "ingest",
+      "inputs": [
+        "<workspace>/ccdb/complaints.csv.zip"
+      ],
+      "outputs": [
+        "<workspace>/m3/run/data/interim/scope.parquet"
+      ],
+      "rows_in": null,
+      "rows_out": 535601,
+      "output_sha256": "434f7e922baae2300d49776d4eff9a2c6b778523570f4e5c37f7bffcdf5b12e1",
+      "code_version": "9210eb31c301",
+      "ts": "2026-11-01T19:30:13+00:00",
+      "detail": {}
+    },
+    {
+      "stage": "validate_raw",
+      "inputs": [
+        "scope.parquet"
+      ],
+      "outputs": [
+        "gx data docs: raw_complaints"
+      ],
+      "rows_in": 535601,
+      "rows_out": null,
+      "output_sha256": null,
+      "code_version": null,
+      "ts": "2026-11-01T19:30:23+00:00",
+      "detail": {
+        "evaluated": 20,
+        "passed": 20,
+        "failed": 0
+      }
+    },
+    {
+      "stage": "clean",
+      "inputs": [
+        "scope.parquet"
+      ],
+      "outputs": [
+        "cleaned frame"
+      ],
+      "rows_in": 535601,
+      "rows_out": 535601,
+      "output_sha256": null,
+      "code_version": "bf72eda3bc18",
+      "ts": "2026-11-01T19:30:28+00:00",
+      "detail": {
+        "rows_in": 535601,
+        "whitespace_values_trimmed": 0,
+        "bad_or_future_dates_dropped": 0,
+        "exact_duplicates_dropped": 0,
+        "id_duplicates_dropped": 0,
+        "nulls_filled_unknown": {
+          "Sub-product": 62,
+          "Issue": 5,
+          "Sub-issue": 183178,
+          "State": 13678
+        },
+        "tags_missing": 454721,
+        "rows_out": 535601
+      }
+    },
+    {
+      "stage": "transform",
+      "inputs": [
+        "cleaned frame"
+      ],
+      "outputs": [
+        "labels, week_start, tag flags"
+      ],
+      "rows_in": 535601,
+      "rows_out": 535601,
+      "output_sha256": null,
+      "code_version": "8db86df3e653",
+      "ts": "2026-11-01T19:30:32+00:00",
+      "detail": {}
+    },
+    {
+      "stage": "integrate",
+      "inputs": [
+        "transformed frame",
+        "reference/state_region.csv"
+      ],
+      "outputs": [
+        "curated frame"
+      ],
+      "rows_in": 535601,
+      "rows_out": 535601,
+      "output_sha256": null,
+      "code_version": "d7bbd7f5805a",
+      "ts": "2026-11-01T19:30:35+00:00",
+      "detail": {}
+    },
+    {
+      "stage": "validate_curated",
+      "inputs": [
+        "curated frame"
+      ],
+      "outputs": [
+        "gx data docs: curated_complaints"
+      ],
+      "rows_in": 535601,
+      "rows_out": null,
+      "output_sha256": null,
+      "code_version": null,
+      "ts": "2026-11-01T19:30:48+00:00",
+      "detail": {
+        "evaluated": 17,
+        "passed": 17,
+        "failed": 0
+      }
+    },
+    {
+      "stage": "bias_suite",
+      "inputs": [
+        "curated frame"
+      ],
+      "outputs": [
+        "reports/bias_report.json"
+      ],
+      "rows_in": 535601,
+      "rows_out": null,
+      "output_sha256": null,
+      "code_version": "6367b55dd9a6",
+      "ts": "2026-11-01T19:32:06+00:00",
+      "detail": {
+        "overall": "WARN"
+      }
+    },
+    {
+      "stage": "dashboard_feed",
+      "inputs": [
+        "curated frame"
+      ],
+      "outputs": [
+        "data/processed/dashboard_weekly_feed.parquet"
+      ],
+      "rows_in": 535601,
+      "rows_out": 26576,
+      "output_sha256": "1e532802946c35caa1458d491934fe7641b699fe34514b9c22c1de7aaf24aa7a",
+      "code_version": null,
+      "ts": "2026-11-01T19:32:09+00:00",
+      "detail": {}
+    },
+    {
+      "stage": "anonymise",
+      "inputs": [
+        "curated frame"
+      ],
+      "outputs": [
+        "anonymised frame"
+      ],
+      "rows_in": 535601,
+      "rows_out": 535578,
+      "output_sha256": null,
+      "code_version": "0d30270344dd",
+      "ts": "2026-11-01T19:32:56+00:00",
+      "detail": {
+        "k_after": 5,
+        "pii_remaining": {}
+      }
+    },
+    {
+      "stage": "publish",
+      "inputs": [
+        "anonymised frame",
+        "audit-only flags"
+      ],
+      "outputs": [
+        "data/processed/analysis_table.parquet",
+        "data/processed/audit_groups.parquet"
+      ],
+      "rows_in": 535578,
+      "rows_out": 535578,
+      "output_sha256": "bd4aef27b8bebe496f3af5f8300022a44dc77e15352ed1495fd777fc65372977",
+      "code_version": null,
+      "ts": "2026-11-01T19:33:05+00:00",
+      "detail": {}
+    }
+  ]
+}

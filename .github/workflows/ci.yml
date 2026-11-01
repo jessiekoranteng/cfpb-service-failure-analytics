@@ -12,6 +12,13 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - run: pip install pandas==2.2.3 numpy==2.1.3 pyarrow==18.1.0 pytest==8.3.4 ruff==0.8.2
-      - run: ruff check src tests
+          cache-dependency-path: requirements-pipeline.txt
+      - run: pip install -r requirements-pipeline.txt
+      - run: ruff check src flows tests
       - run: pytest -q
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t cfpb-pipeline .

@@ -1,0 +1,14 @@
+# Module 3 data pipeline: versions exactly as tested (Python 3.11)
+pandas==2.3.3
+numpy==2.4.6
+pyarrow==26.0.0
+scipy==1.17.1
+scikit-learn==1.9.1
+pyyaml==6.0.3
+prefect==3.9.1
+great-expectations==1.24.1
+fairlearn==0.15.0
+faker==40.44.0
+# Dev
+pytest==9.2.0
+ruff==0.17.3

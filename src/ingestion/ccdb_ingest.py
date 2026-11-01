@@ -7,7 +7,7 @@ import argparse
 import hashlib
 import json
 import zipfile
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -36,19 +36,28 @@ def filter_chunk(chunk):
     return chunk[keep]
 
 
+def _read_chunks(path, chunksize):
+    """Yield string chunks from the CFPB bulk .zip or from a plain .csv (used for tests and small extracts)."""
+    path = Path(path)
+    if path.suffix.lower() == ".zip":
+        with zipfile.ZipFile(path) as z, z.open(z.namelist()[0]) as fh:
+            yield from pd.read_csv(fh, usecols=USECOLS, chunksize=chunksize, dtype=str)
+    else:
+        yield from pd.read_csv(path, usecols=USECOLS, chunksize=chunksize, dtype=str)
+
+
 def ingest(zip_path, out_path, chunksize=500_000):
     zip_path, out_path = Path(zip_path), Path(out_path)
     parts, total = [], 0
-    with zipfile.ZipFile(zip_path) as z, z.open(z.namelist()[0]) as fh:
-        for chunk in pd.read_csv(fh, usecols=USECOLS, chunksize=chunksize, dtype=str):
-            total += len(chunk)
-            parts.append(filter_chunk(chunk))
+    for chunk in _read_chunks(zip_path, chunksize):
+        total += len(chunk)
+        parts.append(filter_chunk(chunk))
     df = pd.concat(parts, ignore_index=True)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(out_path, index=False)
     meta = {
         "source": "https://files.consumerfinance.gov/ccdb/complaints.csv.zip",
-        "retrieved": datetime.now(timezone.utc).date().isoformat(),
+        "retrieved": datetime.now(UTC).date().isoformat(),
         "source_sha256": sha256_file(zip_path),
         "source_rows": total,
         "scope_rows": len(df),
