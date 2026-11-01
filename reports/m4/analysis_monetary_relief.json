@@ -1,0 +1,472 @@
+{
+  "target": "monetary_relief",
+  "algorithm": "lightgbm",
+  "deployed_threshold": 0.175,
+  "test_flag_share": 0.1849530777795451,
+  "performance": {
+    "n": 94305,
+    "prevalence": 0.11313291978155983,
+    "roc_auc": 0.7908613290229389,
+    "pr_auc": 0.30542849569844654,
+    "pr_auc_lift": 2.6997313981480926,
+    "brier": 0.08825523730070671,
+    "threshold": 0.21014492753623187,
+    "accuracy": 0.8264036901542866,
+    "precision": 0.3194655521783181,
+    "recall": 0.4728653107132815,
+    "f1": 0.38131589887003514,
+    "tn": 72889,
+    "fp": 10747,
+    "fn": 5624,
+    "tp": 5045,
+    "recall_at_capacity": 0.5379135814040679,
+    "precision_at_capacity": 0.2861345166276113,
+    "capacity_threshold": 0.16347305389221556
+  },
+  "performance_at_review_threshold": {
+    "precision": 0.3063868822382754,
+    "recall": 0.5008904302183897,
+    "f1": 0.3802070363914482,
+    "tn": 71538,
+    "fp": 12098,
+    "fn": 5325,
+    "tp": 5344
+  },
+  "calibration": {
+    "ece_calibrated": 0.014998745202460473,
+    "ece_uncalibrated": 0.006879756523826742,
+    "brier_calibrated": 0.08825523730070671
+  },
+  "fairness": {
+    "older_american": {
+      "n_group": 7372,
+      "n_rest": 86933,
+      "base_rate_group": 0.12805208898534998,
+      "base_rate_rest": 0.11186776022914198,
+      "selection_group": 0.2103906673901248,
+      "selection_rest": 0.1827959463034751,
+      "tpr_group": 0.4544491525423729,
+      "tpr_rest": 0.5053984575835475,
+      "fpr_group": 0.1745488487865588,
+      "fpr_rest": 0.14216143404828516,
+      "demographic_parity_difference": 0.027594721086649704,
+      "demographic_parity_ratio": 0.8688405648931131,
+      "equalized_odds_difference": 0.05094930504117462,
+      "disparate_impact_ratio": 0.8688405648931131,
+      "passes": {
+        "disparate_impact": true,
+        "equalized_odds": true,
+        "demographic_parity": true
+      }
+    },
+    "servicemember": {
+      "n_group": 8524,
+      "n_rest": 85781,
+      "base_rate_group": 0.10992491787893008,
+      "base_rate_rest": 0.11345169676268638,
+      "selection_group": 0.1873533552322853,
+      "selection_rest": 0.18471456383115142,
+      "tpr_group": 0.47705442902881534,
+      "tpr_rest": 0.5031853678586108,
+      "fpr_group": 0.15157506260709108,
+      "fpr_rest": 0.1439598153821878,
+      "demographic_parity_difference": 0.0026387914011338776,
+      "demographic_parity_ratio": 0.9859154302421633,
+      "equalized_odds_difference": 0.026130938829795447,
+      "disparate_impact_ratio": 0.9859154302421633,
+      "passes": {
+        "disparate_impact": true,
+        "equalized_odds": true,
+        "demographic_parity": true
+      }
+    },
+    "tag_group": {
+      "table": [
+        {
+          "tag_group": "Both",
+          "selection": 0.2009,
+          "tpr": 0.457,
+          "fpr": 0.1599,
+          "n": 1349.0
+        },
+        {
+          "tag_group": "None recorded",
+          "selection": 0.1826,
+          "tpr": 0.5074,
+          "fpr": 0.1414,
+          "n": 79758.0
+        },
+        {
+          "tag_group": "Older American",
+          "selection": 0.2125,
+          "tpr": 0.4538,
+          "fpr": 0.1778,
+          "n": 6023.0
+        },
+        {
+          "tag_group": "Servicemember",
+          "selection": 0.1848,
+          "tpr": 0.482,
+          "fpr": 0.1501,
+          "n": 7175.0
+        }
+      ],
+      "selection_ratio_min_max": 0.8592941176470589,
+      "tpr_gap": 0.05359999999999998,
+      "fpr_gap": 0.036400000000000016
+    },
+    "region": {
+      "table": [
+        {
+          "region": "Midwest",
+          "selection": 0.1692,
+          "tpr": 0.4833,
+          "fpr": 0.1345,
+          "n": 14097.0
+        },
+        {
+          "region": "Northeast",
+          "selection": 0.2408,
+          "tpr": 0.6,
+          "fpr": 0.1873,
+          "n": 16689.0
+        },
+        {
+          "region": "Other",
+          "selection": 0.1197,
+          "tpr": 0.4859,
+          "fpr": 0.0849,
+          "n": 2039.0
+        },
+        {
+          "region": "South",
+          "selection": 0.1675,
+          "tpr": 0.4674,
+          "fpr": 0.1329,
+          "n": 39478.0
+        },
+        {
+          "region": "West",
+          "selection": 0.19,
+          "tpr": 0.4831,
+          "fpr": 0.1465,
+          "n": 22002.0
+        }
+      ],
+      "selection_ratio_min_max": 0.497093023255814,
+      "tpr_gap": 0.1326,
+      "fpr_gap": 0.10239999999999999
+    }
+  },
+  "mitigation": {
+    "method": "fairlearn ThresholdOptimizer, equalized_odds across region, fitted on the validation window",
+    "before": {
+      "tpr_gap": 0.1326,
+      "fpr_gap": 0.10239999999999999,
+      "selection_ratio": 0.497093023255814,
+      "flag_share": 0.1849530777795451,
+      "precision": 0.3063868822382754,
+      "recall": 0.5008904302183897
+    },
+    "after": {
+      "tpr_gap": 0.0948,
+      "fpr_gap": 0.040200000000000014,
+      "selection_ratio": 0.9203077768617751,
+      "flag_share": 0.3488150151105456,
+      "precision": 0.2331661346709226,
+      "recall": 0.718905239478864
+    },
+    "after_table": [
+      {
+        "region": "Midwest",
+        "selection": 0.3356,
+        "tpr": 0.7185,
+        "fpr": 0.2933,
+        "n": 14097.0
+      },
+      {
+        "region": "Northeast",
+        "selection": 0.3442,
+        "tpr": 0.7312,
+        "fpr": 0.2865,
+        "n": 16689.0
+      },
+      {
+        "region": "Other",
+        "selection": 0.3639,
+        "tpr": 0.7571,
+        "fpr": 0.3265,
+        "n": 2039.0
+      },
+      {
+        "region": "South",
+        "selection": 0.3625,
+        "tpr": 0.7502,
+        "fpr": 0.3177,
+        "n": 39478.0
+      },
+      {
+        "region": "West",
+        "selection": 0.3349,
+        "tpr": 0.6623,
+        "fpr": 0.2863,
+        "n": 22002.0
+      }
+    ],
+    "tags_after": {
+      "older_american": {
+        "n_group": 7372,
+        "n_rest": 86933,
+        "base_rate_group": 0.12805208898534998,
+        "base_rate_rest": 0.11186776022914198,
+        "selection_group": 0.41454150841020077,
+        "selection_rest": 0.3432413467843052,
+        "tpr_group": 0.7203389830508474,
+        "tpr_rest": 0.7187660668380462,
+        "fpr_group": 0.36963285625388925,
+        "fpr_rest": 0.29594083514661695,
+        "demographic_parity_difference": 0.07130016162589559,
+        "demographic_parity_ratio": 0.8280023588003592,
+        "equalized_odds_difference": 0.0736920211072723,
+        "disparate_impact_ratio": 0.8280023588003592,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      },
+      "servicemember": {
+        "n_group": 8524,
+        "n_rest": 85781,
+        "base_rate_group": 0.10992491787893008,
+        "base_rate_rest": 0.11345169676268638,
+        "selection_group": 0.3837400281557954,
+        "selection_rest": 0.3453445401662373,
+        "tpr_group": 0.7225186766275347,
+        "tpr_rest": 0.718557336621455,
+        "fpr_group": 0.34190061948069067,
+        "fpr_rest": 0.29758445212954804,
+        "demographic_parity_difference": 0.03839548798955811,
+        "demographic_parity_ratio": 0.8999440111210659,
+        "equalized_odds_difference": 0.04431616735114263,
+        "disparate_impact_ratio": 0.8999440111210659,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      }
+    },
+    "balanced_accuracy_before": 0.6781199006513059,
+    "balanced_accuracy_after": 0.7086503336425359
+  },
+  "mitigation_equal_opportunity": {
+    "method": "per-region thresholds equalising recall (equal opportunity), fitted on the validation window",
+    "recall_target": 0.5674947044097824,
+    "thresholds": {
+      "Midwest": 0.16347305389221556,
+      "Northeast": 0.21019108280254778,
+      "Other": 0.12516046213093707,
+      "South": 0.16347305389221556,
+      "West": 0.1649713571124639
+    },
+    "tpr_gap": 0.09320000000000006,
+    "fpr_gap": 0.017699999999999994,
+    "selection_ratio": 0.8745827372436815,
+    "flag_share": 0.19533428768357988,
+    "precision": 0.29460941316975187,
+    "recall": 0.5086699784422157,
+    "table": [
+      {
+        "region": "Midwest",
+        "selection": 0.199,
+        "tpr": 0.5175,
+        "fpr": 0.1638,
+        "n": 14097.0
+      },
+      {
+        "region": "Northeast",
+        "selection": 0.2097,
+        "tpr": 0.5423,
+        "fpr": 0.1601,
+        "n": 16689.0
+      },
+      {
+        "region": "Other",
+        "selection": 0.1834,
+        "tpr": 0.5763,
+        "fpr": 0.1461,
+        "n": 2039.0
+      },
+      {
+        "region": "South",
+        "selection": 0.1915,
+        "tpr": 0.5027,
+        "fpr": 0.1556,
+        "n": 39478.0
+      },
+      {
+        "region": "West",
+        "selection": 0.19,
+        "tpr": 0.4831,
+        "fpr": 0.1466,
+        "n": 22002.0
+      }
+    ],
+    "tags": {
+      "older_american": {
+        "n_group": 7372,
+        "n_rest": 86933,
+        "base_rate_group": 0.12805208898534998,
+        "base_rate_rest": 0.11186776022914198,
+        "selection_group": 0.224633749321758,
+        "selection_rest": 0.19284966583460827,
+        "tpr_group": 0.4661016949152542,
+        "tpr_rest": 0.5128020565552699,
+        "fpr_group": 0.18917237087741132,
+        "fpr_rest": 0.15254895865713397,
+        "demographic_parity_difference": 0.03178408348714973,
+        "demographic_parity_ratio": 0.8585070872782199,
+        "equalized_odds_difference": 0.046700361640015675,
+        "disparate_impact_ratio": 0.8585070872782199,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      },
+      "servicemember": {
+        "n_group": 8524,
+        "n_rest": 85781,
+        "base_rate_group": 0.10992491787893008,
+        "base_rate_rest": 0.11345169676268638,
+        "selection_group": 0.20753167526982638,
+        "selection_rest": 0.19412224152201538,
+        "tpr_group": 0.5058697972251868,
+        "tpr_rest": 0.5089395807644883,
+        "fpr_group": 0.17068670093581126,
+        "fpr_rest": 0.15383502741653407,
+        "demographic_parity_difference": 0.013409433747811006,
+        "demographic_parity_ratio": 0.9353860863389819,
+        "equalized_odds_difference": 0.016851673519277188,
+        "disparate_impact_ratio": 0.9353860863389819,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      }
+    }
+  },
+  "sensitivity": {
+    "perturbations": [
+      {
+        "scenario": "baseline",
+        "roc_auc": 0.7909,
+        "pr_auc": 0.3054,
+        "mean_abs_score_change": 0.0,
+        "flag_flip_rate": 0.0
+      },
+      {
+        "scenario": "company volume -20%",
+        "roc_auc": 0.7913,
+        "pr_auc": 0.3049,
+        "mean_abs_score_change": 0.004,
+        "flag_flip_rate": 0.013
+      },
+      {
+        "scenario": "company volume +20%",
+        "roc_auc": 0.7913,
+        "pr_auc": 0.3071,
+        "mean_abs_score_change": 0.003,
+        "flag_flip_rate": 0.0059
+      },
+      {
+        "scenario": "company volume missing",
+        "roc_auc": 0.7846,
+        "pr_auc": 0.2816,
+        "mean_abs_score_change": 0.0363,
+        "flag_flip_rate": 0.1177
+      },
+      {
+        "scenario": "sub-issue not recorded",
+        "roc_auc": 0.7649,
+        "pr_auc": 0.2656,
+        "mean_abs_score_change": 0.0346,
+        "flag_flip_rate": 0.0816
+      },
+      {
+        "scenario": "channel set to Web",
+        "roc_auc": 0.7906,
+        "pr_auc": 0.305,
+        "mean_abs_score_change": 0.0004,
+        "flag_flip_rate": 0.001
+      },
+      {
+        "scenario": "month shifted +1",
+        "roc_auc": 0.7904,
+        "pr_auc": 0.3046,
+        "mean_abs_score_change": 0.0037,
+        "flag_flip_rate": 0.0081
+      },
+      {
+        "scenario": "unseen company",
+        "roc_auc": 0.6263,
+        "pr_auc": 0.1631,
+        "mean_abs_score_change": 0.0643,
+        "flag_flip_rate": 0.1804
+      }
+    ],
+    "bootstrap": {
+      "roc_auc_ci": [
+        0.7863339006088033,
+        0.7945673106921467
+      ],
+      "pr_auc_ci": [
+        0.2966106523453059,
+        0.3132092796145279
+      ],
+      "n_boot": 300
+    },
+    "quarterly": [
+      {
+        "quarter": "2025Q4",
+        "n": 29666,
+        "prevalence": 0.1032,
+        "roc_auc": 0.8023,
+        "pr_auc": 0.294
+      },
+      {
+        "quarter": "2026Q1",
+        "n": 32626,
+        "prevalence": 0.1144,
+        "roc_auc": 0.7938,
+        "pr_auc": 0.3177
+      },
+      {
+        "quarter": "2026Q2",
+        "n": 32013,
+        "prevalence": 0.1211,
+        "roc_auc": 0.7785,
+        "pr_auc": 0.3049
+      }
+    ],
+    "without_surge": {
+      "rows_removed": 66647,
+      "with_surge": {
+        "roc_auc": 0.7914366980883795,
+        "pr_auc": 0.3141114403473706,
+        "recall_at_capacity": 0.5233855094198144,
+        "precision_at_capacity": 0.29606065426011346,
+        "brier": 0.08799201158813903
+      },
+      "without_surge": {
+        "roc_auc": 0.7924537381010127,
+        "pr_auc": 0.31403831233776563,
+        "recall_at_capacity": 0.5207610835129816,
+        "precision_at_capacity": 0.2945761094321616,
+        "brier": 0.08804143277478996
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "case": "A. flagged and got relief (true positive)",
+    "lime": [
+      [
+        "company_key=MT BANK CORPORATION",
+        0.136
+      ],
+      [
+        "Sub-issue=Fee problem",
+        0.117
+      ],
+      [
+        "Issue=Managing an account",
+        0.018
+      ],
+      [
+        "Sub-product=Checking account",
+        0.007
+      ],
+      [
+        "company_volume_lag4 <= 77.00",
+        0.005
+      ],
+      [
+        "region=Northeast",
+        0.003
+      ]
+    ]
+  },
+  {
+    "case": "B. relief missed (false negative)",
+    "lime": [
+      [
+        "company_volume_lag4 > 460.00",
+        -0.058
+      ],
+      [
+        "company_key=PAYPAL HOLDINGS INC",
+        0.038
+      ],
+      [
+        "Sub-issue=Problem using a debit or ATM card",
+        0.031
+      ],
+      [
+        "Sub-product=Checking account",
+        0.016
+      ],
+      [
+        "Issue=Managing an account",
+        0.01
+      ],
+      [
+        "month > 8.00",
+        0.008
+      ]
+    ]
+  },
+  {
+    "case": "C. low risk, no relief",
+    "lime": [
+      [
+        "company_key=BLOCK INC",
+        -0.112
+      ],
+      [
+        "company_volume_lag4 > 460.00",
+        -0.051
+      ],
+      [
+        "Issue=Managing, opening, or closing your mobile wallet account",
+        -0.045
+      ],
+      [
+        "Sub-issue=Unknown",
+        -0.029
+      ],
+      [
+        "Product=Money transfer, virtual currency, or money service",
+        0.003
+      ],
+      [
+        "1.00 < month <= 5.00",
+        0.001
+      ]
+    ]
+  }
+]

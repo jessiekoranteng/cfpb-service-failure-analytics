@@ -1,0 +1,34 @@
+# CFPB complaint-risk scoring API (Module 4)
+# Build:  docker build -f Dockerfile.api -t cfpb-risk-api .
+# Run:    docker run --rm -p 8000:8000 cfpb-risk-api        # then open http://localhost:8000/docs
+# The two serialized model bundles in models/ are copied into the image; retraining produces new bundles and a new image.
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    MPLBACKEND=Agg
+
+WORKDIR /app
+
+# LightGBM needs the OpenMP runtime, which the slim image does not include
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY requirements-api.txt .
+RUN pip install -r requirements-api.txt
+
+COPY src/__init__.py ./src/__init__.py
+COPY src/modeling ./src/modeling
+COPY api ./api
+COPY models/risk_monetary_relief.joblib models/risk_untimely.joblib ./models/
+
+RUN useradd --create-home --uid 10001 scorer && chown -R scorer /app
+USER scorer
+EXPOSE 8000
+
+# Fail the build if the service cannot import or the bundles cannot load
+RUN python -c "import joblib; [joblib.load(f'models/risk_{t}.joblib') for t in ('monetary_relief','untimely')]; import api.main"
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health').status==200 else 1)"
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

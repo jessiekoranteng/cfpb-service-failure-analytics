@@ -1,0 +1,1828 @@
+{
+  "split": {
+    "monetary_relief": {
+      "train": {
+        "n": 349611,
+        "prevalence": 0.11060006693153247
+      },
+      "valid": {
+        "n": 50891,
+        "prevalence": 0.10204161836081035
+      },
+      "test": {
+        "n": 94305,
+        "prevalence": 0.11313291978155983
+      }
+    },
+    "untimely": {
+      "train": {
+        "n": 349611,
+        "prevalence": 0.01048594008769747
+      },
+      "valid": {
+        "n": 50893,
+        "prevalence": 0.019865207395909065
+      },
+      "test": {
+        "n": 94310,
+        "prevalence": 0.011748489025554023
+      }
+    }
+  },
+  "models": {
+    "monetary_relief": {
+      "majority": {
+        "test": {
+          "n": 94305,
+          "prevalence": 0.11313291978155983,
+          "roc_auc": 0.5,
+          "pr_auc": 0.11313291978155983,
+          "pr_auc_lift": 1.0,
+          "brier": 0.10034027758681888,
+          "threshold": 0.5,
+          "accuracy": 0.8868670802184402,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 83636,
+          "fp": 0,
+          "fn": 10669,
+          "tp": 0,
+          "recall_at_capacity": 1.0,
+          "precision_at_capacity": 0.11313291978155983,
+          "capacity_threshold": 0.11060006693153247
+        },
+        "valid": {
+          "n": 50891,
+          "prevalence": 0.10204161836081035,
+          "roc_auc": 0.5,
+          "pr_auc": 0.10204161836081035,
+          "pr_auc_lift": 1.0,
+          "brier": 0.0917023735250548,
+          "threshold": 0.5,
+          "accuracy": 0.8979583816391896,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 45698,
+          "fp": 0,
+          "fn": 5193,
+          "tp": 0,
+          "recall_at_capacity": 1.0,
+          "precision_at_capacity": 0.10204161836081035,
+          "capacity_threshold": 0.11060006693153247
+        },
+        "cv": {},
+        "run_id": "2cd42ea07f744012afe43a195f65c6a0"
+      },
+      "logreg": {
+        "test": {
+          "n": 94305,
+          "prevalence": 0.11313291978155983,
+          "roc_auc": 0.7928092665797558,
+          "pr_auc": 0.3167424866588361,
+          "pr_auc_lift": 2.799737576564021,
+          "brier": 0.08805091165002173,
+          "threshold": 0.18735701068748237,
+          "accuracy": 0.8330311224219289,
+          "precision": 0.329321589457406,
+          "recall": 0.45908707470240884,
+          "f1": 0.38352517422284865,
+          "tn": 73661,
+          "fp": 9975,
+          "fn": 5771,
+          "tp": 4898,
+          "recall_at_capacity": 0.5505670634548693,
+          "precision_at_capacity": 0.3114362971210434,
+          "capacity_threshold": 0.16512833323582263
+        },
+        "valid": {
+          "n": 50891,
+          "prevalence": 0.10204161836081035,
+          "roc_auc": 0.8040646894884378,
+          "pr_auc": 0.3068646015934114,
+          "pr_auc_lift": 3.0072494588273253,
+          "brier": 0.08010366324346645,
+          "threshold": 0.18735701068748237,
+          "accuracy": 0.829832386866047,
+          "precision": 0.3014090961163936,
+          "recall": 0.5066435586366262,
+          "f1": 0.37796293635971845,
+          "tn": 39600,
+          "fp": 6098,
+          "fn": 2562,
+          "tp": 2631,
+          "recall_at_capacity": 0.5522819179664934,
+          "precision_at_capacity": 0.2817288801571709,
+          "capacity_threshold": 0.16696130453111305
+        },
+        "cv": {
+          "cv_pr_auc": 0.2604357879713443,
+          "cv_pr_auc_std": 0.061914983811131974,
+          "params": {
+            "class_weight": null,
+            "C": 1.0
+          }
+        },
+        "run_id": "4b14db46df6f4c3da57293b9a5a30ed3"
+      },
+      "forest": {
+        "test": {
+          "n": 94305,
+          "prevalence": 0.11313291978155983,
+          "roc_auc": 0.7110098327392671,
+          "pr_auc": 0.27726048553596583,
+          "pr_auc_lift": 2.4507498442655598,
+          "brier": 0.09274095479441127,
+          "threshold": 0.16549605216541693,
+          "accuracy": 0.8263188590212608,
+          "precision": 0.2985748553689855,
+          "recall": 0.3966632299184553,
+          "f1": 0.3406995934468462,
+          "tn": 73694,
+          "fp": 9942,
+          "fn": 6437,
+          "tp": 4232,
+          "recall_at_capacity": 0.46902240134970474,
+          "precision_at_capacity": 0.26530936853825354,
+          "capacity_threshold": 0.1514512263999208
+        },
+        "valid": {
+          "n": 50891,
+          "prevalence": 0.10204161836081035,
+          "roc_auc": 0.7634160605831752,
+          "pr_auc": 0.2812899660857268,
+          "pr_auc_lift": 2.7566200007835016,
+          "brier": 0.08357130658142647,
+          "threshold": 0.16549605216541693,
+          "accuracy": 0.8282996993574503,
+          "precision": 0.2810917623811288,
+          "recall": 0.43828230310032734,
+          "f1": 0.34251316779533486,
+          "tn": 39877,
+          "fp": 5821,
+          "fn": 2917,
+          "tp": 2276,
+          "recall_at_capacity": 0.5022145195455421,
+          "precision_at_capacity": 0.2562137734551528,
+          "capacity_threshold": 0.15441172494774616
+        },
+        "cv": {
+          "cv_pr_auc": 0.2438303582971806,
+          "cv_pr_auc_std": 0.05564819553986419,
+          "params": {
+            "n_estimators": 60,
+            "min_samples_leaf": 100,
+            "max_features": "sqrt",
+            "max_depth": 8,
+            "class_weight": null
+          }
+        },
+        "run_id": "6e6bacdf21be48a88c02561f70be469b"
+      },
+      "lightgbm": {
+        "test": {
+          "n": 94305,
+          "prevalence": 0.11313291978155983,
+          "roc_auc": 0.7914366980883795,
+          "pr_auc": 0.3141114403473706,
+          "pr_auc_lift": 2.7764813367662184,
+          "brier": 0.08799201158813903,
+          "threshold": 0.19474419865147663,
+          "accuracy": 0.8267324107947617,
+          "precision": 0.31993395567409666,
+          "recall": 0.47220920423657325,
+          "f1": 0.38143549364021806,
+          "tn": 72927,
+          "fp": 10709,
+          "fn": 5631,
+          "tp": 5038,
+          "recall_at_capacity": 0.5233855094198144,
+          "precision_at_capacity": 0.29606065426011346,
+          "capacity_threshold": 0.16659902824788977
+        },
+        "valid": {
+          "n": 50891,
+          "prevalence": 0.10204161836081035,
+          "roc_auc": 0.8139616168430426,
+          "pr_auc": 0.30763219628450117,
+          "pr_auc_lift": 3.0147718276746676,
+          "brier": 0.07969046978262279,
+          "threshold": 0.19474419865147663,
+          "accuracy": 0.8263936648916311,
+          "precision": 0.30015364354697105,
+          "recall": 0.5266705180050067,
+          "f1": 0.3823837818944425,
+          "tn": 39321,
+          "fp": 6377,
+          "fn": 2458,
+          "tp": 2735,
+          "recall_at_capacity": 0.5657616021567494,
+          "precision_at_capacity": 0.2884067929714342,
+          "capacity_threshold": 0.17724905095002322
+        },
+        "cv": {
+          "cv_pr_auc": 0.26241758384266783,
+          "cv_pr_auc_std": 0.07391622653662223,
+          "params": {
+            "scale_pos_weight": 1.0,
+            "reg_lambda": 0.0,
+            "num_leaves": 15,
+            "n_estimators": 300,
+            "min_child_samples": 100,
+            "learning_rate": 0.03,
+            "colsample_bytree": 1.0
+          }
+        },
+        "run_id": "79181b5f947e415bb611709ffc4a3212"
+      }
+    },
+    "untimely": {
+      "majority": {
+        "test": {
+          "n": 94310,
+          "prevalence": 0.011748489025554023,
+          "roc_auc": 0.5,
+          "pr_auc": 0.011748489025554023,
+          "pr_auc_lift": 1.0,
+          "brier": 0.011612056060990946,
+          "threshold": 0.5,
+          "accuracy": 0.988251510974446,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 93202,
+          "fp": 0,
+          "fn": 1108,
+          "tp": 0,
+          "recall_at_capacity": 1.0,
+          "precision_at_capacity": 0.011748489025554023,
+          "capacity_threshold": 0.01048594008769747
+        },
+        "valid": {
+          "n": 50893,
+          "prevalence": 0.019865207395909065,
+          "roc_auc": 0.5,
+          "pr_auc": 0.019865207395909065,
+          "pr_auc_lift": 1.0,
+          "brier": 0.019558551586265474,
+          "threshold": 0.5,
+          "accuracy": 0.980134792604091,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 49882,
+          "fp": 0,
+          "fn": 1011,
+          "tp": 0,
+          "recall_at_capacity": 1.0,
+          "precision_at_capacity": 0.019865207395909065,
+          "capacity_threshold": 0.01048594008769747
+        },
+        "cv": {},
+        "run_id": "0364fb733f6841e890a24f425087c832"
+      },
+      "logreg": {
+        "test": {
+          "n": 94310,
+          "prevalence": 0.011748489025554023,
+          "roc_auc": 0.9033523474535378,
+          "pr_auc": 0.10023890306009889,
+          "pr_auc_lift": 8.532067642236395,
+          "brier": 0.13432158302398173,
+          "threshold": 0.8909911852199517,
+          "accuracy": 0.973650726328067,
+          "precision": 0.15966386554621848,
+          "recall": 0.2915162454873646,
+          "f1": 0.20632385819227084,
+          "tn": 91502,
+          "fp": 1700,
+          "fn": 785,
+          "tp": 323,
+          "recall_at_capacity": 0.8483754512635379,
+          "precision_at_capacity": 0.04983564839359559,
+          "capacity_threshold": 0.4730836427364809
+        },
+        "valid": {
+          "n": 50893,
+          "prevalence": 0.019865207395909065,
+          "roc_auc": 0.8019818165529403,
+          "pr_auc": 0.07041934360237459,
+          "pr_auc_lift": 3.544858213605984,
+          "brier": 0.14384563943375012,
+          "threshold": 0.8909911852199517,
+          "accuracy": 0.9585404672548288,
+          "precision": 0.12233676975945017,
+          "recall": 0.17606330365974282,
+          "f1": 0.14436334144363341,
+          "tn": 48605,
+          "fp": 1277,
+          "fn": 833,
+          "tp": 178,
+          "recall_at_capacity": 0.41938674579624136,
+          "precision_at_capacity": 0.041654386481972686,
+          "capacity_threshold": 0.49462997451508295
+        },
+        "cv": {
+          "cv_pr_auc": 0.0809610055527558,
+          "cv_pr_auc_std": 0.00862785253605718,
+          "params": {
+            "class_weight": "balanced",
+            "C": 0.01
+          }
+        },
+        "run_id": "cf0edc9d462e429e9484c1918998b409"
+      },
+      "lightgbm": {
+        "test": {
+          "n": 94310,
+          "prevalence": 0.011748489025554023,
+          "roc_auc": 0.9032311722366628,
+          "pr_auc": 0.13182303333792908,
+          "pr_auc_lift": 11.220424435108386,
+          "brier": 0.011168179234734435,
+          "threshold": 0.12202755275911761,
+          "accuracy": 0.9648499628883469,
+          "precision": 0.12273504273504274,
+          "recall": 0.3240072202166065,
+          "f1": 0.17803124225142575,
+          "tn": 90636,
+          "fp": 2566,
+          "fn": 749,
+          "tp": 359,
+          "recall_at_capacity": 0.8050541516245487,
+          "precision_at_capacity": 0.04729084932668858,
+          "capacity_threshold": 0.010360053872372578
+        },
+        "valid": {
+          "n": 50893,
+          "prevalence": 0.019865207395909065,
+          "roc_auc": 0.7594482523761021,
+          "pr_auc": 0.1349004978136858,
+          "pr_auc_lift": 6.790792319715045,
+          "brier": 0.018585460078932282,
+          "threshold": 0.12202755275911761,
+          "accuracy": 0.9635313304383707,
+          "precision": 0.18209179834462003,
+          "recall": 0.23936696340257171,
+          "f1": 0.20683760683760682,
+          "tn": 48795,
+          "fp": 1087,
+          "fn": 769,
+          "tp": 242,
+          "recall_at_capacity": 0.42729970326409494,
+          "precision_at_capacity": 0.04243614931237721,
+          "capacity_threshold": 0.010184792793914377
+        },
+        "cv": {
+          "cv_pr_auc": 0.110410869591041,
+          "cv_pr_auc_std": 0.03557423321628292,
+          "params": {
+            "scale_pos_weight": 2.0,
+            "reg_lambda": 0.0,
+            "num_leaves": 63,
+            "n_estimators": 150,
+            "min_child_samples": 200,
+            "learning_rate": 0.03,
+            "colsample_bytree": 0.6
+          }
+        },
+        "run_id": "8a9b784becb44a1784acc79a6948d580"
+      }
+    }
+  },
+  "champion": {
+    "monetary_relief": "lightgbm",
+    "untimely": "lightgbm"
+  },
+  "champion_calibrated_test": {
+    "monetary_relief": {
+      "n": 94305,
+      "prevalence": 0.11313291978155983,
+      "roc_auc": 0.7908613290229389,
+      "pr_auc": 0.30542849569844654,
+      "pr_auc_lift": 2.6997313981480926,
+      "brier": 0.08825523730070671,
+      "threshold": 0.21014492753623187,
+      "accuracy": 0.8264036901542866,
+      "precision": 0.3194655521783181,
+      "recall": 0.4728653107132815,
+      "f1": 0.38131589887003514,
+      "tn": 72889,
+      "fp": 10747,
+      "fn": 5624,
+      "tp": 5045,
+      "recall_at_capacity": 0.5379135814040679,
+      "precision_at_capacity": 0.2861345166276113,
+      "capacity_threshold": 0.16347305389221556
+    },
+    "untimely": {
+      "n": 94310,
+      "prevalence": 0.011748489025554023,
+      "roc_auc": 0.8915130586280627,
+      "pr_auc": 0.11266097427836337,
+      "pr_auc_lift": 9.589401159018458,
+      "brier": 0.011133408165615108,
+      "threshold": 0.12374581939799331,
+      "accuracy": 0.9652740960661648,
+      "precision": 0.12286808214410025,
+      "recall": 0.3185920577617328,
+      "f1": 0.177342376287365,
+      "tn": 90682,
+      "fp": 2520,
+      "fn": 755,
+      "tp": 353,
+      "recall_at_capacity": 0.970216606498195,
+      "precision_at_capacity": 0.027900337399429015,
+      "capacity_threshold": 0.02821227461464081
+    }
+  },
+  "calibration": {
+    "monetary_relief": {
+      "ece_calibrated": 0.014998745202460473,
+      "ece_uncalibrated": 0.006879756523826742,
+      "brier_calibrated": 0.08825523730070671
+    },
+    "untimely": {
+      "ece_calibrated": 0.003409711667040362,
+      "ece_uncalibrated": 0.005997805607015341,
+      "brier_calibrated": 0.011133408165615108
+    }
+  },
+  "relief_at_review_threshold": {
+    "precision": 0.3063868822382754,
+    "recall": 0.5008904302183897,
+    "f1": 0.3802070363914482,
+    "tn": 71538,
+    "fp": 12098,
+    "fn": 5325,
+    "tp": 5344
+  },
+  "deployed_threshold": 0.175,
+  "test_flag_share": 0.1849530777795451,
+  "untimely_test_flag_share": 0.40854628353302935,
+  "capacity": {
+    "monetary_relief": {
+      "n_test": 94305,
+      "flagged": 18861,
+      "recall_top20": 0.521136001499672,
+      "precision_top20": 0.29478818726472616,
+      "validation_fixed_threshold": 0.16347305389221556,
+      "share_flagged_by_fixed_threshold": 0.21268225438736016
+    },
+    "untimely": {
+      "n_test": 94310,
+      "flagged": 18862,
+      "recall_top20": 0.7481949458483754,
+      "precision_top20": 0.04395080055137313,
+      "validation_fixed_threshold": 0.02821227461464081,
+      "share_flagged_by_fixed_threshold": 0.40854628353302935
+    }
+  },
+  "charter": {
+    "limit": 0.05,
+    "n_test": 94305,
+    "global_threshold": {
+      "flag_share": 0.1849530777795451,
+      "f2": {
+        "four_group": {
+          "tpr_gap": {
+            "gap": 0.05352872237769263,
+            "ci95": [
+              0.03739264950733865,
+              0.1250258659544659
+            ]
+          },
+          "fpr_gap": {
+            "gap": 0.03633338356439622,
+            "ci95": [
+              0.026398463252606207,
+              0.04839074441096688
+            ]
+          },
+          "holds": false,
+          "holds_with_confidence": false
+        },
+        "older_american": {
+          "tpr_gap": {
+            "gap": 0.05094930504117462,
+            "ci95": [
+              0.017333905415124473,
+              0.08093419931415616
+            ]
+          },
+          "fpr_gap": {
+            "gap": 0.03238741473827364,
+            "ci95": [
+              0.023002092137779217,
+              0.0419978442518995
+            ]
+          },
+          "holds": false,
+          "holds_with_confidence": false
+        },
+        "servicemember": {
+          "tpr_gap": {
+            "gap": 0.026130938829795447,
+            "ci95": [
+              0.0019539979337141345,
+              0.05718219100177536
+            ]
+          },
+          "fpr_gap": {
+            "gap": 0.007615247224903282,
+            "ci95": [
+              0.00033596959844349813,
+              0.01608102251984634
+            ]
+          },
+          "holds": true,
+          "holds_with_confidence": false
+        }
+      },
+      "tag_group_table": [
+        {
+          "tag_group": "Both",
+          "selection": 0.2009,
+          "tpr": 0.457,
+          "fpr": 0.1599,
+          "n": 1349.0
+        },
+        {
+          "tag_group": "None recorded",
+          "selection": 0.1826,
+          "tpr": 0.5074,
+          "fpr": 0.1414,
+          "n": 79758.0
+        },
+        {
+          "tag_group": "Older American",
+          "selection": 0.2125,
+          "tpr": 0.4538,
+          "fpr": 0.1778,
+          "n": 6023.0
+        },
+        {
+          "tag_group": "Servicemember",
+          "selection": 0.1848,
+          "tpr": 0.482,
+          "fpr": 0.1501,
+          "n": 7175.0
+        }
+      ],
+      "binary": {
+        "older_american": {
+          "selection_group": 0.2103906673901248,
+          "selection_rest": 0.1827959463034751,
+          "tpr_group": 0.4544491525423729,
+          "tpr_rest": 0.5053984575835475,
+          "fpr_group": 0.1745488487865588,
+          "fpr_rest": 0.14216143404828516,
+          "disparate_impact_ratio": 0.8688405648931131,
+          "equalized_odds_difference": 0.05094930504117462,
+          "demographic_parity_difference": 0.027594721086649704
+        },
+        "servicemember": {
+          "selection_group": 0.1873533552322853,
+          "selection_rest": 0.18471456383115142,
+          "tpr_group": 0.47705442902881534,
+          "tpr_rest": 0.5031853678586108,
+          "fpr_group": 0.15157506260709108,
+          "fpr_rest": 0.1439598153821878,
+          "disparate_impact_ratio": 0.9859154302421633,
+          "equalized_odds_difference": 0.026130938829795447,
+          "demographic_parity_difference": 0.0026387914011338776
+        }
+      }
+    },
+    "deployed_region_thresholds": {
+      "flag_share": 0.19533428768357988,
+      "f2": {
+        "four_group": {
+          "tpr_gap": {
+            "gap": 0.06098678464556223,
+            "ci95": [
+              0.033719506081372766,
+              0.1568238697178749
+            ]
+          },
+          "fpr_gap": {
+            "gap": 0.041436338996993005,
+            "ci95": [
+              0.030621201371025565,
+              0.05388956944891379
+            ]
+          },
+          "holds": false,
+          "holds_with_confidence": false
+        },
+        "older_american": {
+          "tpr_gap": {
+            "gap": 0.046700361640015675,
+            "ci95": [
+              0.015921261509434143,
+              0.07491493184711791
+            ]
+          },
+          "fpr_gap": {
+            "gap": 0.036623412220277346,
+            "ci95": [
+              0.026529337933318495,
+              0.04669141647979992
+            ]
+          },
+          "holds": true,
+          "holds_with_confidence": false
+        },
+        "servicemember": {
+          "tpr_gap": {
+            "gap": 0.0030697835393015405,
+            "ci95": [
+              0.0005250753100962208,
+              0.03850528998886734
+            ]
+          },
+          "fpr_gap": {
+            "gap": 0.016851673519277188,
+            "ci95": [
+              0.007910455930351766,
+              0.026104619993065032
+            ]
+          },
+          "holds": true,
+          "holds_with_confidence": true
+        }
+      },
+      "tag_group_table": [
+        {
+          "tag_group": "Both",
+          "selection": 0.2135,
+          "tpr": 0.457,
+          "fpr": 0.1745,
+          "n": 1349.0
+        },
+        {
+          "tag_group": "None recorded",
+          "selection": 0.1916,
+          "tpr": 0.5124,
+          "fpr": 0.151,
+          "n": 79758.0
+        },
+        {
+          "tag_group": "Older American",
+          "selection": 0.2271,
+          "tpr": 0.4683,
+          "fpr": 0.1924,
+          "n": 6023.0
+        },
+        {
+          "tag_group": "Servicemember",
+          "selection": 0.2064,
+          "tpr": 0.518,
+          "fpr": 0.17,
+          "n": 7175.0
+        }
+      ],
+      "binary": {
+        "older_american": {
+          "selection_group": 0.224633749321758,
+          "selection_rest": 0.19284966583460827,
+          "tpr_group": 0.4661016949152542,
+          "tpr_rest": 0.5128020565552699,
+          "fpr_group": 0.18917237087741132,
+          "fpr_rest": 0.15254895865713397,
+          "disparate_impact_ratio": 0.8585070872782199,
+          "equalized_odds_difference": 0.046700361640015675,
+          "demographic_parity_difference": 0.03178408348714973
+        },
+        "servicemember": {
+          "selection_group": 0.20753167526982638,
+          "selection_rest": 0.19412224152201538,
+          "tpr_group": 0.5058697972251868,
+          "tpr_rest": 0.5089395807644883,
+          "fpr_group": 0.17068670093581126,
+          "fpr_rest": 0.15383502741653407,
+          "disparate_impact_ratio": 0.9353860863389819,
+          "equalized_odds_difference": 0.016851673519277188,
+          "demographic_parity_difference": 0.013409433747811006
+        }
+      }
+    },
+    "f3_proxy": {
+      "older_american": {
+        "auc_recover_tag_from_features": 0.6797934180655986,
+        "ci95": [
+          0.6737582781148304,
+          0.6857204317347677
+        ],
+        "auc_relief_score_vs_tag": 0.5599637086191553,
+        "tag_prevalence_test": 0.07817188908329357
+      },
+      "servicemember": {
+        "auc_recover_tag_from_features": 0.6402471362433089,
+        "ci95": [
+          0.6333426777405963,
+          0.6456890385727908
+        ],
+        "auc_relief_score_vs_tag": 0.5153740281329615,
+        "tag_prevalence_test": 0.09038757223901171
+      }
+    }
+  },
+  "proxy_drivers": {
+    "older_american": {
+      "Product": {
+        "without": 0.67869184767491,
+        "only": 0.5015472434072581
+      },
+      "Sub-product": {
+        "without": 0.6701656179371994,
+        "only": 0.5311391189062165
+      },
+      "Issue": {
+        "without": 0.676824693091147,
+        "only": 0.5504742703886208
+      },
+      "Sub-issue": {
+        "without": 0.6778587934881204,
+        "only": 0.5460663987999963
+      },
+      "Submitted via": {
+        "without": 0.6495137635354347,
+        "only": 0.5505047477048999
+      },
+      "region": {
+        "without": 0.6779254661283327,
+        "only": 0.525500766242673
+      },
+      "company_key": {
+        "without": 0.627608585675328,
+        "only": 0.6221017393859406
+      },
+      "company_volume_lag4": {
+        "without": 0.6825839111264731,
+        "only": 0.5156566242921288
+      },
+      "month": {
+        "without": 0.6807920666590774,
+        "only": 0.49050069159415705
+      }
+    },
+    "servicemember": {
+      "Product": {
+        "without": 0.6383172650470219,
+        "only": 0.5124284508380887
+      },
+      "Sub-product": {
+        "without": 0.6381820682847102,
+        "only": 0.5136827170535669
+      },
+      "Issue": {
+        "without": 0.6339845593017579,
+        "only": 0.5190994312609855
+      },
+      "Sub-issue": {
+        "without": 0.638376366062999,
+        "only": 0.5213232580236585
+      },
+      "Submitted via": {
+        "without": 0.6292124686946988,
+        "only": 0.5137607151593695
+      },
+      "region": {
+        "without": 0.6137073302480883,
+        "only": 0.5679578580304386
+      },
+      "company_key": {
+        "without": 0.5725906346550727,
+        "only": 0.5899897764111376
+      },
+      "company_volume_lag4": {
+        "without": 0.6370537352572406,
+        "only": 0.5040155635488145
+      },
+      "month": {
+        "without": 0.6385100570756528,
+        "only": 0.4983842547141767
+      }
+    }
+  },
+  "criteria": [
+    {
+      "criterion": "Relief ROC-AUC",
+      "target": ">= 0.70",
+      "observed": 0.7908613290229389,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Relief PR-AUC lift over prevalence",
+      "target": ">= 2.0x",
+      "observed": 2.6997313981480926,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Relief recall when exactly the top 20% are flagged",
+      "target": ">= 0.45",
+      "observed": 0.521136001499672,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Relief beats majority-class baseline (PR-AUC)",
+      "target": "greater",
+      "observed": 0.19229557591688673,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Relief beats logistic-regression baseline (PR-AUC, paired bootstrap)",
+      "target": "difference > 0",
+      "observed": -0.011313990960389542,
+      "met": false,
+      "note": ""
+    },
+    {
+      "criterion": "Untimely PR-AUC lift over prevalence",
+      "target": ">= 3.0x",
+      "observed": 9.589401159018458,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Older American: disparate impact ratio",
+      "target": ">= 0.80",
+      "observed": 0.8688405648931131,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Older American: equalized-odds difference",
+      "target": "<= 0.10",
+      "observed": 0.05094930504117462,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Older American: demographic-parity difference",
+      "target": "<= 0.10",
+      "observed": 0.027594721086649704,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Servicemember: disparate impact ratio",
+      "target": ">= 0.80",
+      "observed": 0.9859154302421633,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Servicemember: equalized-odds difference",
+      "target": "<= 0.10",
+      "observed": 0.026130938829795447,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Servicemember: demographic-parity difference",
+      "target": "<= 0.10",
+      "observed": 0.0026387914011338776,
+      "met": true,
+      "note": ""
+    },
+    {
+      "criterion": "Charter F2: TPR and FPR gaps, Older American (deployed)",
+      "target": "<= 0.05",
+      "observed": 0.046700361640015675,
+      "met": true,
+      "note": "95% CI upper bound 0.075; limit not confirmed"
+    },
+    {
+      "criterion": "Charter F2: TPR and FPR gaps, Servicemember (deployed)",
+      "target": "<= 0.05",
+      "observed": 0.016851673519277188,
+      "met": true,
+      "note": "95% CI upper bound 0.039"
+    },
+    {
+      "criterion": "Charter F2: TPR and FPR gaps, all four tag groups (incl. 'Both') (deployed)",
+      "target": "<= 0.05",
+      "observed": 0.06098678464556223,
+      "met": false,
+      "note": "95% CI upper bound 0.157; limit not confirmed"
+    },
+    {
+      "criterion": "Charter F3: Older American tag recoverable from inputs (AUC)",
+      "target": "95% CI includes 0.50",
+      "observed": 0.6797934180655986,
+      "met": false,
+      "note": "95% CI 0.674-0.686"
+    },
+    {
+      "criterion": "Charter F3: Servicemember tag recoverable from inputs (AUC)",
+      "target": "95% CI includes 0.50",
+      "observed": 0.6402471362433089,
+      "met": false,
+      "note": "95% CI 0.633-0.646"
+    }
+  ],
+  "champion_vs_logreg": {
+    "target": "monetary_relief",
+    "n_test": 94305,
+    "n_boot": 300,
+    "champion": "lightgbm (calibrated)",
+    "baseline": "logistic regression",
+    "pr_auc": {
+      "difference": -0.011313990960389542,
+      "ci95": [
+        -0.015348735683880699,
+        -0.006912990513227407
+      ],
+      "ci_includes_zero": false
+    },
+    "roc_auc": {
+      "difference": -0.001947937556816881,
+      "ci95": [
+        -0.0036023244253259672,
+        -0.0002373795904359329
+      ],
+      "ci_includes_zero": false
+    },
+    "recall_at_capacity": {
+      "difference": -0.02943106195519729,
+      "ci95": [
+        -0.03619085524385971,
+        -0.02298303892047739
+      ],
+      "ci_includes_zero": false
+    }
+  },
+  "fairness_tags": {
+    "older_american": {
+      "n_group": 7372,
+      "n_rest": 86933,
+      "base_rate_group": 0.12805208898534998,
+      "base_rate_rest": 0.11186776022914198,
+      "selection_group": 0.2103906673901248,
+      "selection_rest": 0.1827959463034751,
+      "tpr_group": 0.4544491525423729,
+      "tpr_rest": 0.5053984575835475,
+      "fpr_group": 0.1745488487865588,
+      "fpr_rest": 0.14216143404828516,
+      "demographic_parity_difference": 0.027594721086649704,
+      "demographic_parity_ratio": 0.8688405648931131,
+      "equalized_odds_difference": 0.05094930504117462,
+      "disparate_impact_ratio": 0.8688405648931131,
+      "passes": {
+        "disparate_impact": true,
+        "equalized_odds": true,
+        "demographic_parity": true
+      }
+    },
+    "servicemember": {
+      "n_group": 8524,
+      "n_rest": 85781,
+      "base_rate_group": 0.10992491787893008,
+      "base_rate_rest": 0.11345169676268638,
+      "selection_group": 0.1873533552322853,
+      "selection_rest": 0.18471456383115142,
+      "tpr_group": 0.47705442902881534,
+      "tpr_rest": 0.5031853678586108,
+      "fpr_group": 0.15157506260709108,
+      "fpr_rest": 0.1439598153821878,
+      "demographic_parity_difference": 0.0026387914011338776,
+      "demographic_parity_ratio": 0.9859154302421633,
+      "equalized_odds_difference": 0.026130938829795447,
+      "disparate_impact_ratio": 0.9859154302421633,
+      "passes": {
+        "disparate_impact": true,
+        "equalized_odds": true,
+        "demographic_parity": true
+      }
+    },
+    "tag_group": {
+      "table": [
+        {
+          "tag_group": "Both",
+          "selection": 0.2009,
+          "tpr": 0.457,
+          "fpr": 0.1599,
+          "n": 1349.0
+        },
+        {
+          "tag_group": "None recorded",
+          "selection": 0.1826,
+          "tpr": 0.5074,
+          "fpr": 0.1414,
+          "n": 79758.0
+        },
+        {
+          "tag_group": "Older American",
+          "selection": 0.2125,
+          "tpr": 0.4538,
+          "fpr": 0.1778,
+          "n": 6023.0
+        },
+        {
+          "tag_group": "Servicemember",
+          "selection": 0.1848,
+          "tpr": 0.482,
+          "fpr": 0.1501,
+          "n": 7175.0
+        }
+      ],
+      "selection_ratio_min_max": 0.8592941176470589,
+      "tpr_gap": 0.05359999999999998,
+      "fpr_gap": 0.036400000000000016
+    },
+    "region": {
+      "table": [
+        {
+          "region": "Midwest",
+          "selection": 0.1692,
+          "tpr": 0.4833,
+          "fpr": 0.1345,
+          "n": 14097.0
+        },
+        {
+          "region": "Northeast",
+          "selection": 0.2408,
+          "tpr": 0.6,
+          "fpr": 0.1873,
+          "n": 16689.0
+        },
+        {
+          "region": "Other",
+          "selection": 0.1197,
+          "tpr": 0.4859,
+          "fpr": 0.0849,
+          "n": 2039.0
+        },
+        {
+          "region": "South",
+          "selection": 0.1675,
+          "tpr": 0.4674,
+          "fpr": 0.1329,
+          "n": 39478.0
+        },
+        {
+          "region": "West",
+          "selection": 0.19,
+          "tpr": 0.4831,
+          "fpr": 0.1465,
+          "n": 22002.0
+        }
+      ],
+      "selection_ratio_min_max": 0.497093023255814,
+      "tpr_gap": 0.1326,
+      "fpr_gap": 0.10239999999999999
+    }
+  },
+  "fairness_untimely_di": {
+    "older_american": 0.982730688855688,
+    "servicemember": 0.9021192991069651
+  },
+  "region_before": {
+    "table": [
+      {
+        "region": "Midwest",
+        "selection": 0.1692,
+        "tpr": 0.4833,
+        "fpr": 0.1345,
+        "n": 14097.0
+      },
+      {
+        "region": "Northeast",
+        "selection": 0.2408,
+        "tpr": 0.6,
+        "fpr": 0.1873,
+        "n": 16689.0
+      },
+      {
+        "region": "Other",
+        "selection": 0.1197,
+        "tpr": 0.4859,
+        "fpr": 0.0849,
+        "n": 2039.0
+      },
+      {
+        "region": "South",
+        "selection": 0.1675,
+        "tpr": 0.4674,
+        "fpr": 0.1329,
+        "n": 39478.0
+      },
+      {
+        "region": "West",
+        "selection": 0.19,
+        "tpr": 0.4831,
+        "fpr": 0.1465,
+        "n": 22002.0
+      }
+    ],
+    "selection_ratio_min_max": 0.497093023255814,
+    "tpr_gap": 0.1326,
+    "fpr_gap": 0.10239999999999999
+  },
+  "tag_group_before": {
+    "table": [
+      {
+        "tag_group": "Both",
+        "selection": 0.2009,
+        "tpr": 0.457,
+        "fpr": 0.1599,
+        "n": 1349.0
+      },
+      {
+        "tag_group": "None recorded",
+        "selection": 0.1826,
+        "tpr": 0.5074,
+        "fpr": 0.1414,
+        "n": 79758.0
+      },
+      {
+        "tag_group": "Older American",
+        "selection": 0.2125,
+        "tpr": 0.4538,
+        "fpr": 0.1778,
+        "n": 6023.0
+      },
+      {
+        "tag_group": "Servicemember",
+        "selection": 0.1848,
+        "tpr": 0.482,
+        "fpr": 0.1501,
+        "n": 7175.0
+      }
+    ],
+    "selection_ratio_min_max": 0.8592941176470589,
+    "tpr_gap": 0.05359999999999998,
+    "fpr_gap": 0.036400000000000016
+  },
+  "mitigation_threshold_optimizer": {
+    "method": "fairlearn ThresholdOptimizer, equalized_odds across region, fitted on the validation window",
+    "before": {
+      "tpr_gap": 0.1326,
+      "fpr_gap": 0.10239999999999999,
+      "selection_ratio": 0.497093023255814,
+      "flag_share": 0.1849530777795451,
+      "precision": 0.3063868822382754,
+      "recall": 0.5008904302183897
+    },
+    "after": {
+      "tpr_gap": 0.0948,
+      "fpr_gap": 0.040200000000000014,
+      "selection_ratio": 0.9203077768617751,
+      "flag_share": 0.3488150151105456,
+      "precision": 0.2331661346709226,
+      "recall": 0.718905239478864
+    },
+    "after_table": [
+      {
+        "region": "Midwest",
+        "selection": 0.3356,
+        "tpr": 0.7185,
+        "fpr": 0.2933,
+        "n": 14097.0
+      },
+      {
+        "region": "Northeast",
+        "selection": 0.3442,
+        "tpr": 0.7312,
+        "fpr": 0.2865,
+        "n": 16689.0
+      },
+      {
+        "region": "Other",
+        "selection": 0.3639,
+        "tpr": 0.7571,
+        "fpr": 0.3265,
+        "n": 2039.0
+      },
+      {
+        "region": "South",
+        "selection": 0.3625,
+        "tpr": 0.7502,
+        "fpr": 0.3177,
+        "n": 39478.0
+      },
+      {
+        "region": "West",
+        "selection": 0.3349,
+        "tpr": 0.6623,
+        "fpr": 0.2863,
+        "n": 22002.0
+      }
+    ],
+    "tags_after": {
+      "older_american": {
+        "n_group": 7372,
+        "n_rest": 86933,
+        "base_rate_group": 0.12805208898534998,
+        "base_rate_rest": 0.11186776022914198,
+        "selection_group": 0.41454150841020077,
+        "selection_rest": 0.3432413467843052,
+        "tpr_group": 0.7203389830508474,
+        "tpr_rest": 0.7187660668380462,
+        "fpr_group": 0.36963285625388925,
+        "fpr_rest": 0.29594083514661695,
+        "demographic_parity_difference": 0.07130016162589559,
+        "demographic_parity_ratio": 0.8280023588003592,
+        "equalized_odds_difference": 0.0736920211072723,
+        "disparate_impact_ratio": 0.8280023588003592,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      },
+      "servicemember": {
+        "n_group": 8524,
+        "n_rest": 85781,
+        "base_rate_group": 0.10992491787893008,
+        "base_rate_rest": 0.11345169676268638,
+        "selection_group": 0.3837400281557954,
+        "selection_rest": 0.3453445401662373,
+        "tpr_group": 0.7225186766275347,
+        "tpr_rest": 0.718557336621455,
+        "fpr_group": 0.34190061948069067,
+        "fpr_rest": 0.29758445212954804,
+        "demographic_parity_difference": 0.03839548798955811,
+        "demographic_parity_ratio": 0.8999440111210659,
+        "equalized_odds_difference": 0.04431616735114263,
+        "disparate_impact_ratio": 0.8999440111210659,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      }
+    },
+    "balanced_accuracy_before": 0.6781199006513059,
+    "balanced_accuracy_after": 0.7086503336425359
+  },
+  "mitigation_equal_opportunity": {
+    "method": "per-region thresholds equalising recall (equal opportunity), fitted on the validation window",
+    "recall_target": 0.5674947044097824,
+    "thresholds": {
+      "Midwest": 0.16347305389221556,
+      "Northeast": 0.21019108280254778,
+      "Other": 0.12516046213093707,
+      "South": 0.16347305389221556,
+      "West": 0.1649713571124639
+    },
+    "tpr_gap": 0.09320000000000006,
+    "fpr_gap": 0.017699999999999994,
+    "selection_ratio": 0.8745827372436815,
+    "flag_share": 0.19533428768357988,
+    "precision": 0.29460941316975187,
+    "recall": 0.5086699784422157,
+    "table": [
+      {
+        "region": "Midwest",
+        "selection": 0.199,
+        "tpr": 0.5175,
+        "fpr": 0.1638,
+        "n": 14097.0
+      },
+      {
+        "region": "Northeast",
+        "selection": 0.2097,
+        "tpr": 0.5423,
+        "fpr": 0.1601,
+        "n": 16689.0
+      },
+      {
+        "region": "Other",
+        "selection": 0.1834,
+        "tpr": 0.5763,
+        "fpr": 0.1461,
+        "n": 2039.0
+      },
+      {
+        "region": "South",
+        "selection": 0.1915,
+        "tpr": 0.5027,
+        "fpr": 0.1556,
+        "n": 39478.0
+      },
+      {
+        "region": "West",
+        "selection": 0.19,
+        "tpr": 0.4831,
+        "fpr": 0.1466,
+        "n": 22002.0
+      }
+    ],
+    "tags": {
+      "older_american": {
+        "n_group": 7372,
+        "n_rest": 86933,
+        "base_rate_group": 0.12805208898534998,
+        "base_rate_rest": 0.11186776022914198,
+        "selection_group": 0.224633749321758,
+        "selection_rest": 0.19284966583460827,
+        "tpr_group": 0.4661016949152542,
+        "tpr_rest": 0.5128020565552699,
+        "fpr_group": 0.18917237087741132,
+        "fpr_rest": 0.15254895865713397,
+        "demographic_parity_difference": 0.03178408348714973,
+        "demographic_parity_ratio": 0.8585070872782199,
+        "equalized_odds_difference": 0.046700361640015675,
+        "disparate_impact_ratio": 0.8585070872782199,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      },
+      "servicemember": {
+        "n_group": 8524,
+        "n_rest": 85781,
+        "base_rate_group": 0.10992491787893008,
+        "base_rate_rest": 0.11345169676268638,
+        "selection_group": 0.20753167526982638,
+        "selection_rest": 0.19412224152201538,
+        "tpr_group": 0.5058697972251868,
+        "tpr_rest": 0.5089395807644883,
+        "fpr_group": 0.17068670093581126,
+        "fpr_rest": 0.15383502741653407,
+        "demographic_parity_difference": 0.013409433747811006,
+        "demographic_parity_ratio": 0.9353860863389819,
+        "equalized_odds_difference": 0.016851673519277188,
+        "disparate_impact_ratio": 0.9353860863389819,
+        "passes": {
+          "disparate_impact": true,
+          "equalized_odds": true,
+          "demographic_parity": true
+        }
+      }
+    }
+  },
+  "sensitivity": {
+    "perturbations": [
+      {
+        "scenario": "baseline",
+        "roc_auc": 0.7909,
+        "pr_auc": 0.3054,
+        "mean_abs_score_change": 0.0,
+        "flag_flip_rate": 0.0
+      },
+      {
+        "scenario": "company volume -20%",
+        "roc_auc": 0.7913,
+        "pr_auc": 0.3049,
+        "mean_abs_score_change": 0.004,
+        "flag_flip_rate": 0.013
+      },
+      {
+        "scenario": "company volume +20%",
+        "roc_auc": 0.7913,
+        "pr_auc": 0.3071,
+        "mean_abs_score_change": 0.003,
+        "flag_flip_rate": 0.0059
+      },
+      {
+        "scenario": "company volume missing",
+        "roc_auc": 0.7846,
+        "pr_auc": 0.2816,
+        "mean_abs_score_change": 0.0363,
+        "flag_flip_rate": 0.1177
+      },
+      {
+        "scenario": "sub-issue not recorded",
+        "roc_auc": 0.7649,
+        "pr_auc": 0.2656,
+        "mean_abs_score_change": 0.0346,
+        "flag_flip_rate": 0.0816
+      },
+      {
+        "scenario": "channel set to Web",
+        "roc_auc": 0.7906,
+        "pr_auc": 0.305,
+        "mean_abs_score_change": 0.0004,
+        "flag_flip_rate": 0.001
+      },
+      {
+        "scenario": "month shifted +1",
+        "roc_auc": 0.7904,
+        "pr_auc": 0.3046,
+        "mean_abs_score_change": 0.0037,
+        "flag_flip_rate": 0.0081
+      },
+      {
+        "scenario": "unseen company",
+        "roc_auc": 0.6263,
+        "pr_auc": 0.1631,
+        "mean_abs_score_change": 0.0643,
+        "flag_flip_rate": 0.1804
+      }
+    ],
+    "bootstrap": {
+      "roc_auc_ci": [
+        0.7863339006088033,
+        0.7945673106921467
+      ],
+      "pr_auc_ci": [
+        0.2966106523453059,
+        0.3132092796145279
+      ],
+      "n_boot": 300
+    },
+    "quarterly": [
+      {
+        "quarter": "2025Q4",
+        "n": 29666,
+        "prevalence": 0.1032,
+        "roc_auc": 0.8023,
+        "pr_auc": 0.294
+      },
+      {
+        "quarter": "2026Q1",
+        "n": 32626,
+        "prevalence": 0.1144,
+        "roc_auc": 0.7938,
+        "pr_auc": 0.3177
+      },
+      {
+        "quarter": "2026Q2",
+        "n": 32013,
+        "prevalence": 0.1211,
+        "roc_auc": 0.7785,
+        "pr_auc": 0.3049
+      }
+    ],
+    "without_surge": {
+      "rows_removed": 66647,
+      "with_surge": {
+        "roc_auc": 0.7914366980883795,
+        "pr_auc": 0.3141114403473706,
+        "recall_at_capacity": 0.5233855094198144,
+        "precision_at_capacity": 0.29606065426011346,
+        "brier": 0.08799201158813903
+      },
+      "without_surge": {
+        "roc_auc": 0.7924537381010127,
+        "pr_auc": 0.31403831233776563,
+        "recall_at_capacity": 0.5207610835129816,
+        "precision_at_capacity": 0.2945761094321616,
+        "brier": 0.08804143277478996
+      }
+    }
+  },
+  "shap_global": [
+    {
+      "feature": "company_key",
+      "mean_abs_shap": 1.4908,
+      "label": "Company",
+      "share": 64.8
+    },
+    {
+      "feature": "Sub-issue",
+      "mean_abs_shap": 0.295,
+      "label": "Sub-issue",
+      "share": 12.8
+    },
+    {
+      "feature": "company_volume_lag4",
+      "mean_abs_shap": 0.1737,
+      "label": "Company volume (prior 4 wks)",
+      "share": 7.5
+    },
+    {
+      "feature": "month",
+      "mean_abs_shap": 0.1333,
+      "label": "Month received",
+      "share": 5.8
+    },
+    {
+      "feature": "Issue",
+      "mean_abs_shap": 0.1261,
+      "label": "Issue",
+      "share": 5.5
+    },
+    {
+      "feature": "Sub-product",
+      "mean_abs_shap": 0.052,
+      "label": "Sub-product",
+      "share": 2.3
+    },
+    {
+      "feature": "region",
+      "mean_abs_shap": 0.0237,
+      "label": "Region",
+      "share": 1.0
+    },
+    {
+      "feature": "Submitted via",
+      "mean_abs_shap": 0.0059,
+      "label": "Channel",
+      "share": 0.3
+    },
+    {
+      "feature": "Product",
+      "mean_abs_shap": 0.0007,
+      "label": "Product",
+      "share": 0.0
+    },
+    {
+      "feature": "subissue_unknown",
+      "mean_abs_shap": 0.0001,
+      "label": "Sub-issue not given",
+      "share": 0.0
+    },
+    {
+      "feature": "log_company_volume_lag4",
+      "mean_abs_shap": 0.0,
+      "label": "Company volume, log",
+      "share": 0.0
+    },
+    {
+      "feature": "company_volume_lag4_missing",
+      "mean_abs_shap": 0.0,
+      "label": "Volume history missing",
+      "share": 0.0
+    }
+  ],
+  "api_demo": [
+    {
+      "status": 200,
+      "request": {
+        "product": "Checking or savings account",
+        "sub_product": "Checking account",
+        "issue": "Closing an account",
+        "sub_issue": "Company closed your account",
+        "channel": "Web",
+        "region": "Northeast",
+        "company": "BANK OF AMERICA NATIONAL ASSOCIATION",
+        "company_volume_lag4": 814.0,
+        "month": 8
+      },
+      "response": {
+        "relief_probability": 0.2371,
+        "untimely_probability": 0.0355,
+        "flag_for_review": true,
+        "review_threshold": 0.2102,
+        "reasons": [
+          {
+            "feature": "Company",
+            "value": "BANK OF AMERICA NATIONAL ASSOCIATION",
+            "effect": 2.614
+          },
+          {
+            "feature": "Sub-issue",
+            "value": "Company closed your account",
+            "effect": -0.2876
+          },
+          {
+            "feature": "Company volume (prior 4 wks)",
+            "value": "814.0",
+            "effect": -0.1147
+          }
+        ],
+        "unseen_values": [],
+        "model_versions": {
+          "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+          "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+        },
+        "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+      }
+    },
+    {
+      "status": 200,
+      "request": {
+        "product": "Checking or savings account",
+        "sub_product": "Checking account",
+        "issue": "Managing an account",
+        "sub_issue": "Problem using a debit or ATM card",
+        "channel": "Referral",
+        "region": "South",
+        "company": "CAPITAL ONE FINANCIAL CORPORATION",
+        "company_volume_lag4": 288.0,
+        "month": 3
+      },
+      "response": {
+        "relief_probability": 0.0496,
+        "untimely_probability": 0.0,
+        "flag_for_review": false,
+        "review_threshold": 0.1635,
+        "reasons": [
+          {
+            "feature": "Sub-issue",
+            "value": "Problem using a debit or ATM card",
+            "effect": 0.3529
+          },
+          {
+            "feature": "Month received",
+            "value": "3",
+            "effect": 0.108
+          },
+          {
+            "feature": "Company",
+            "value": "CAPITAL ONE FINANCIAL CORPORATION",
+            "effect": -0.0871
+          }
+        ],
+        "unseen_values": [],
+        "model_versions": {
+          "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+          "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+        },
+        "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+      }
+    },
+    {
+      "status": 200,
+      "request": {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Mobile or digital wallet",
+        "issue": "Fraud or scam",
+        "sub_issue": "Unknown",
+        "channel": "Web",
+        "region": "South",
+        "company": "BLOCK INC",
+        "company_volume_lag4": 1114.0,
+        "month": 9
+      },
+      "response": {
+        "relief_probability": 0.0002,
+        "untimely_probability": 0.0282,
+        "flag_for_review": false,
+        "review_threshold": 0.1635,
+        "reasons": [
+          {
+            "feature": "Company",
+            "value": "BLOCK INC",
+            "effect": -3.9071
+          },
+          {
+            "feature": "Month received",
+            "value": "9",
+            "effect": 0.5624
+          },
+          {
+            "feature": "Company volume (prior 4 wks)",
+            "value": "1114.0",
+            "effect": -0.1243
+          }
+        ],
+        "unseen_values": [],
+        "model_versions": {
+          "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+          "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+        },
+        "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+      }
+    },
+    {
+      "status": 200,
+      "request": {
+        "product": "Checking or savings account",
+        "sub_product": "Checking account",
+        "issue": "Closing an account",
+        "sub_issue": "Company closed your account",
+        "channel": "Web",
+        "region": "Northeast",
+        "company": "BRAND NEW FINTECH LTD",
+        "company_volume_lag4": null,
+        "month": 8
+      },
+      "response": {
+        "relief_probability": 0.0131,
+        "untimely_probability": 0.134,
+        "flag_for_review": false,
+        "review_threshold": 0.2102,
+        "reasons": [
+          {
+            "feature": "Sub-issue",
+            "value": "Company closed your account",
+            "effect": -0.6427
+          },
+          {
+            "feature": "Company",
+            "value": "BRAND NEW FINTECH LTD (not seen in training)",
+            "effect": 0.2985
+          },
+          {
+            "feature": "Issue",
+            "value": "Closing an account",
+            "effect": -0.0777
+          }
+        ],
+        "unseen_values": [
+          "company_key=BRAND NEW FINTECH LTD"
+        ],
+        "model_versions": {
+          "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+          "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+        },
+        "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+      }
+    },
+    {
+      "status": 422,
+      "request": {
+        "product": "Checking or savings account",
+        "sub_product": "Checking account",
+        "issue": "Closing an account",
+        "sub_issue": "Company closed your account",
+        "channel": "Web",
+        "region": "Northeast",
+        "company": "BANK OF AMERICA NATIONAL ASSOCIATION",
+        "company_volume_lag4": 814.0,
+        "month": 13
+      },
+      "response": {
+        "detail": [
+          {
+            "type": "less_than_equal",
+            "loc": [
+              "body",
+              "month"
+            ],
+            "msg": "Input should be less than or equal to 12",
+            "input": 13,
+            "ctx": {
+              "le": 12
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "mlflow": {
+    "experiment": "cfpb-service-failure-risk",
+    "experiment_id": "1",
+    "runs_total": 51,
+    "tuning_trials_nested": 37,
+    "run_names": [
+      "00-preregistration",
+      "monetary_relief-adopt-region-thresholds",
+      "monetary_relief-champion-calibrated",
+      "monetary_relief-fairness-sensitivity-analysis",
+      "monetary_relief-fairness-sensitivity-analysis-v2",
+      "monetary_relief-forest",
+      "monetary_relief-forest-trial0",
+      "monetary_relief-forest-trial1",
+      "monetary_relief-forest-trial2",
+      "monetary_relief-forest-trial3",
+      "monetary_relief-forest-trial4",
+      "monetary_relief-lightgbm",
+      "monetary_relief-lightgbm-trial0",
+      "monetary_relief-lightgbm-trial1",
+      "monetary_relief-lightgbm-trial2",
+      "monetary_relief-lightgbm-trial3",
+      "monetary_relief-lightgbm-trial4",
+      "monetary_relief-lightgbm-trial5",
+      "monetary_relief-lightgbm-trial6",
+      "monetary_relief-lightgbm-trial7",
+      "monetary_relief-lightgbm-trial8",
+      "monetary_relief-lightgbm-trial9",
+      "monetary_relief-logreg",
+      "monetary_relief-logreg-trial0",
+      "monetary_relief-logreg-trial1",
+      "monetary_relief-logreg-trial2",
+      "monetary_relief-logreg-trial3",
+      "monetary_relief-logreg-trial4",
+      "monetary_relief-logreg-trial5",
+      "monetary_relief-majority",
+      "untimely-champion-calibrated",
+      "untimely-fairness-sensitivity-analysis",
+      "untimely-lightgbm",
+      "untimely-lightgbm-trial0",
+      "untimely-lightgbm-trial1",
+      "untimely-lightgbm-trial2",
+      "untimely-lightgbm-trial3",
+      "untimely-lightgbm-trial4",
+      "untimely-lightgbm-trial5",
+      "untimely-lightgbm-trial6",
+      "untimely-lightgbm-trial7",
+      "untimely-lightgbm-trial8",
+      "untimely-lightgbm-trial9",
+      "untimely-logreg",
+      "untimely-logreg-trial0",
+      "untimely-logreg-trial1",
+      "untimely-logreg-trial2",
+      "untimely-logreg-trial3",
+      "untimely-logreg-trial4",
+      "untimely-logreg-trial5",
+      "untimely-majority"
+    ],
+    "registry": {
+      "cfpb-monetary_relief-risk": {
+        "versions": 1,
+        "aliases": {
+          "champion": 1
+        }
+      },
+      "cfpb-untimely-risk": {
+        "versions": 1,
+        "aliases": {
+          "champion": 1
+        }
+      }
+    }
+  }
+}

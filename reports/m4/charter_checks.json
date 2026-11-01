@@ -1,0 +1,250 @@
+{
+  "limit": 0.05,
+  "n_test": 94305,
+  "global_threshold": {
+    "flag_share": 0.1849530777795451,
+    "f2": {
+      "four_group": {
+        "tpr_gap": {
+          "gap": 0.05352872237769263,
+          "ci95": [
+            0.03739264950733865,
+            0.1250258659544659
+          ]
+        },
+        "fpr_gap": {
+          "gap": 0.03633338356439622,
+          "ci95": [
+            0.026398463252606207,
+            0.04839074441096688
+          ]
+        },
+        "holds": false,
+        "holds_with_confidence": false
+      },
+      "older_american": {
+        "tpr_gap": {
+          "gap": 0.05094930504117462,
+          "ci95": [
+            0.017333905415124473,
+            0.08093419931415616
+          ]
+        },
+        "fpr_gap": {
+          "gap": 0.03238741473827364,
+          "ci95": [
+            0.023002092137779217,
+            0.0419978442518995
+          ]
+        },
+        "holds": false,
+        "holds_with_confidence": false
+      },
+      "servicemember": {
+        "tpr_gap": {
+          "gap": 0.026130938829795447,
+          "ci95": [
+            0.0019539979337141345,
+            0.05718219100177536
+          ]
+        },
+        "fpr_gap": {
+          "gap": 0.007615247224903282,
+          "ci95": [
+            0.00033596959844349813,
+            0.01608102251984634
+          ]
+        },
+        "holds": true,
+        "holds_with_confidence": false
+      }
+    },
+    "tag_group_table": [
+      {
+        "tag_group": "Both",
+        "selection": 0.2009,
+        "tpr": 0.457,
+        "fpr": 0.1599,
+        "n": 1349.0
+      },
+      {
+        "tag_group": "None recorded",
+        "selection": 0.1826,
+        "tpr": 0.5074,
+        "fpr": 0.1414,
+        "n": 79758.0
+      },
+      {
+        "tag_group": "Older American",
+        "selection": 0.2125,
+        "tpr": 0.4538,
+        "fpr": 0.1778,
+        "n": 6023.0
+      },
+      {
+        "tag_group": "Servicemember",
+        "selection": 0.1848,
+        "tpr": 0.482,
+        "fpr": 0.1501,
+        "n": 7175.0
+      }
+    ],
+    "binary": {
+      "older_american": {
+        "selection_group": 0.2103906673901248,
+        "selection_rest": 0.1827959463034751,
+        "tpr_group": 0.4544491525423729,
+        "tpr_rest": 0.5053984575835475,
+        "fpr_group": 0.1745488487865588,
+        "fpr_rest": 0.14216143404828516,
+        "disparate_impact_ratio": 0.8688405648931131,
+        "equalized_odds_difference": 0.05094930504117462,
+        "demographic_parity_difference": 0.027594721086649704
+      },
+      "servicemember": {
+        "selection_group": 0.1873533552322853,
+        "selection_rest": 0.18471456383115142,
+        "tpr_group": 0.47705442902881534,
+        "tpr_rest": 0.5031853678586108,
+        "fpr_group": 0.15157506260709108,
+        "fpr_rest": 0.1439598153821878,
+        "disparate_impact_ratio": 0.9859154302421633,
+        "equalized_odds_difference": 0.026130938829795447,
+        "demographic_parity_difference": 0.0026387914011338776
+      }
+    }
+  },
+  "deployed_region_thresholds": {
+    "flag_share": 0.19533428768357988,
+    "f2": {
+      "four_group": {
+        "tpr_gap": {
+          "gap": 0.06098678464556223,
+          "ci95": [
+            0.033719506081372766,
+            0.1568238697178749
+          ]
+        },
+        "fpr_gap": {
+          "gap": 0.041436338996993005,
+          "ci95": [
+            0.030621201371025565,
+            0.05388956944891379
+          ]
+        },
+        "holds": false,
+        "holds_with_confidence": false
+      },
+      "older_american": {
+        "tpr_gap": {
+          "gap": 0.046700361640015675,
+          "ci95": [
+            0.015921261509434143,
+            0.07491493184711791
+          ]
+        },
+        "fpr_gap": {
+          "gap": 0.036623412220277346,
+          "ci95": [
+            0.026529337933318495,
+            0.04669141647979992
+          ]
+        },
+        "holds": true,
+        "holds_with_confidence": false
+      },
+      "servicemember": {
+        "tpr_gap": {
+          "gap": 0.0030697835393015405,
+          "ci95": [
+            0.0005250753100962208,
+            0.03850528998886734
+          ]
+        },
+        "fpr_gap": {
+          "gap": 0.016851673519277188,
+          "ci95": [
+            0.007910455930351766,
+            0.026104619993065032
+          ]
+        },
+        "holds": true,
+        "holds_with_confidence": true
+      }
+    },
+    "tag_group_table": [
+      {
+        "tag_group": "Both",
+        "selection": 0.2135,
+        "tpr": 0.457,
+        "fpr": 0.1745,
+        "n": 1349.0
+      },
+      {
+        "tag_group": "None recorded",
+        "selection": 0.1916,
+        "tpr": 0.5124,
+        "fpr": 0.151,
+        "n": 79758.0
+      },
+      {
+        "tag_group": "Older American",
+        "selection": 0.2271,
+        "tpr": 0.4683,
+        "fpr": 0.1924,
+        "n": 6023.0
+      },
+      {
+        "tag_group": "Servicemember",
+        "selection": 0.2064,
+        "tpr": 0.518,
+        "fpr": 0.17,
+        "n": 7175.0
+      }
+    ],
+    "binary": {
+      "older_american": {
+        "selection_group": 0.224633749321758,
+        "selection_rest": 0.19284966583460827,
+        "tpr_group": 0.4661016949152542,
+        "tpr_rest": 0.5128020565552699,
+        "fpr_group": 0.18917237087741132,
+        "fpr_rest": 0.15254895865713397,
+        "disparate_impact_ratio": 0.8585070872782199,
+        "equalized_odds_difference": 0.046700361640015675,
+        "demographic_parity_difference": 0.03178408348714973
+      },
+      "servicemember": {
+        "selection_group": 0.20753167526982638,
+        "selection_rest": 0.19412224152201538,
+        "tpr_group": 0.5058697972251868,
+        "tpr_rest": 0.5089395807644883,
+        "fpr_group": 0.17068670093581126,
+        "fpr_rest": 0.15383502741653407,
+        "disparate_impact_ratio": 0.9353860863389819,
+        "equalized_odds_difference": 0.016851673519277188,
+        "demographic_parity_difference": 0.013409433747811006
+      }
+    }
+  },
+  "f3_proxy": {
+    "older_american": {
+      "auc_recover_tag_from_features": 0.6797934180655986,
+      "ci95": [
+        0.6737582781148304,
+        0.6857204317347677
+      ],
+      "auc_relief_score_vs_tag": 0.5599637086191553,
+      "tag_prevalence_test": 0.07817188908329357
+    },
+    "servicemember": {
+      "auc_recover_tag_from_features": 0.6402471362433089,
+      "ci95": [
+        0.6333426777405963,
+        0.6456890385727908
+      ],
+      "auc_relief_score_vs_tag": 0.5153740281329615,
+      "tag_prevalence_test": 0.09038757223901171
+    }
+  }
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "case": "A (flagged)",
+    "company": "MT BANK CORPORATION",
+    "issue": "Managing an account",
+    "score": 0.521,
+    "flagged": true,
+    "changes": [
+      {
+        "Sub-issue": [
+          "Fee problem",
+          "Deposits and withdrawals"
+        ]
+      },
+      {
+        "Sub-issue": [
+          "Fee problem",
+          "Deposits or withdrawals"
+        ]
+      },
+      {
+        "Sub-issue": [
+          "Fee problem",
+          "Problem accessing account"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "B (relief missed)",
+    "company": "PAYPAL HOLDINGS INC",
+    "issue": "Managing an account",
+    "score": 0.163,
+    "flagged": false,
+    "changes": [
+      {
+        "Sub-issue": [
+          "Problem using a debit or ATM card",
+          "Fee problem"
+        ]
+      },
+      {
+        "Sub-issue": [
+          "Problem using a debit or ATM card",
+          "Fee problem"
+        ],
+        "Submitted via": [
+          "Web",
+          "Phone"
+        ]
+      },
+      {
+        "Sub-issue": [
+          "Problem using a debit or ATM card",
+          "Fee problem"
+        ],
+        "Submitted via": [
+          "Web",
+          "Postal mail"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "D (just below the line)",
+    "company": "CITIBANK NA",
+    "issue": "Managing an account",
+    "score": 0.163,
+    "flagged": false,
+    "changes": [
+      {
+        "Submitted via": [
+          "Web",
+          "Phone"
+        ]
+      },
+      {
+        "Sub-issue": [
+          "Deposits and withdrawals",
+          "Funds not handled or disbursed as instructed"
+        ]
+      },
+      {
+        "Sub-issue": [
+          "Deposits and withdrawals",
+          "Fee problem"
+        ],
+        "Submitted via": [
+          "Web",
+          "Phone"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "C (very low risk)",
+    "company": "BLOCK INC",
+    "issue": "Managing, opening, or closing your mobile wallet account",
+    "score": 0.0,
+    "flagged": false,
+    "changes": [],
+    "note": "no counterfactual found inside the plausible range"
+  }
+]
