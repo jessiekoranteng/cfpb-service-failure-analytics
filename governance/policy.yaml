@@ -1,0 +1,44 @@
+# Data Governance Framework: machine-readable policy enforced by src/pipeline/governance.py
+version: 1
+owner: "Project owner (analyst)"
+review_cycle_days: 90
+layers:
+  raw:                {sensitivity: "public-source", path: "data/raw",       retention_days: 365}
+  interim:            {sensitivity: "internal",      path: "data/interim",   retention_days: 90}
+  processed_analysis: {sensitivity: "internal",      path: "data/processed", retention_days: 365}
+  processed_audit:    {sensitivity: "restricted",    path: "data/processed", retention_days: 365}
+  reports:            {sensitivity: "internal",      path: "reports",        retention_days: 730}
+  audit_log:          {sensitivity: "restricted",    path: "logs",           retention_days: 730}
+roles:
+  data_engineer:  {description: "Builds and runs the pipeline"}
+  analyst:        {description: "Uses the model-ready table and dashboard feed"}
+  ethics_panel:   {description: "Reviews bias and audit outputs; approves releases"}
+  auditor:        {description: "Read-only access to logs and reports"}
+  viewer:         {description: "Dashboard and reports only"}
+# role -> layer -> allowed actions
+access:
+  data_engineer:
+    raw: [read, write]
+    interim: [read, write, delete]
+    processed_analysis: [read, write, delete]
+    processed_audit: [read, write]
+    reports: [read, write]
+    audit_log: [read, append]
+  analyst:
+    processed_analysis: [read]
+    reports: [read]
+  ethics_panel:
+    processed_analysis: [read]
+    processed_audit: [read]
+    reports: [read]
+    audit_log: [read]
+  auditor:
+    reports: [read]
+    audit_log: [read]
+  viewer:
+    reports: [read]
+principles:
+  - "Least privilege: no role can write to audit_log except by append through the pipeline."
+  - "Every grant and denial is written to the privacy audit log."
+  - "Protected-group fields live only in processed_audit and are never model features."
+  - "Retention is enforced by code (enforce_retention), reviewed every 90 days."

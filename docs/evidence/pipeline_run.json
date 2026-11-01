@@ -1,0 +1,72 @@
+{
+  "started": "2026-11-01T19:28:42+00:00",
+  "finished": "2026-11-01T19:33:05+00:00",
+  "source": "<workspace>/ccdb/complaints.csv.zip",
+  "rows": {
+    "scope": 535601,
+    "clean": 535601,
+    "published": 535578
+  },
+  "clean_report": {
+    "rows_in": 535601,
+    "whitespace_values_trimmed": 0,
+    "bad_or_future_dates_dropped": 0,
+    "exact_duplicates_dropped": 0,
+    "id_duplicates_dropped": 0,
+    "nulls_filled_unknown": {
+      "Sub-product": 62,
+      "Issue": 5,
+      "Sub-issue": 183178,
+      "State": 13678
+    },
+    "tags_missing": 454721,
+    "rows_out": 535601
+  },
+  "validation": {
+    "raw": {
+      "evaluated": 20,
+      "passed": 20,
+      "failed": 0
+    },
+    "curated": {
+      "evaluated": 17,
+      "passed": 17,
+      "failed": 0
+    }
+  },
+  "bias_overall": "WARN",
+  "k_anonymity": {
+    "k_before": 1,
+    "k_target": 5,
+    "generalised_region": 56,
+    "generalised_Submitted via": 37,
+    "suppressed_rows": 23,
+    "k_after": 5
+  },
+  "pii_redactions": {},
+  "outputs": {
+    "analysis_table": "<workspace>/m3/run/data/processed/analysis_table.parquet",
+    "audit_groups": "<workspace>/m3/run/data/processed/audit_groups.parquet",
+    "analysis_rows": 535578,
+    "analysis_columns": [
+      "complaint_key",
+      "Product",
+      "Sub-product",
+      "Issue",
+      "Sub-issue",
+      "Submitted via",
+      "region",
+      "company_key",
+      "company_volume_lag4",
+      "week_start",
+      "year",
+      "monetary_relief",
+      "untimely"
+    ]
+  },
+  "audit_log": {
+    "path": "<workspace>/m3/run/logs/privacy_audit.jsonl",
+    "events": 17,
+    "chain_ok": true
+  }
+}

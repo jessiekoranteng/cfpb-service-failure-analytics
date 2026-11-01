@@ -1,0 +1,11 @@
+.git
+.github
+data
+reports
+logs
+gx
+**/__pycache__
+.pytest_cache
+.ruff_cache
+docs
+*.zip
