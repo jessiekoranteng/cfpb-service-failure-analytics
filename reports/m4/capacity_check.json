@@ -1,0 +1,18 @@
+{
+  "monetary_relief": {
+    "n_test": 94305,
+    "flagged": 18861,
+    "recall_top20": 0.521136001499672,
+    "precision_top20": 0.29478818726472616,
+    "validation_fixed_threshold": 0.16347305389221556,
+    "share_flagged_by_fixed_threshold": 0.21268225438736016
+  },
+  "untimely": {
+    "n_test": 94310,
+    "flagged": 18862,
+    "recall_top20": 0.7481949458483754,
+    "precision_top20": 0.04395080055137313,
+    "validation_fixed_threshold": 0.02821227461464081,
+    "share_flagged_by_fixed_threshold": 0.40854628353302935
+  }
+}

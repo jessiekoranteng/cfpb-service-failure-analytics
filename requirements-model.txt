@@ -1,0 +1,19 @@
+# Module 4 modelling, explainability, fairness and tracking: exactly as tested (Python 3.11).
+# Kept separate from requirements-pipeline.txt (Module 3), which pins pandas 2.3.3; the model code reads the pipeline's
+# Parquet output only, so the two stacks do not need to share one environment.
+-r requirements-api.txt
+pyarrow==25.0.1
+mlflow==3.17.2
+lime==0.2.0.1
+dice-ml==0.12
+fairlearn==0.15.0
+# Notebook execution
+nbformat==5.11.1
+nbconvert==7.17.2
+nbclient==0.11.0
+ipykernel==7.4.0
+# API tests and dev
+httpx==0.28.1
+requests==2.34.2
+pytest==9.2.0
+ruff==0.17.3

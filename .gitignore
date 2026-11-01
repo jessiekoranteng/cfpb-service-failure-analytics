@@ -9,3 +9,6 @@ data/processed/*
 !data/**/.gitkeep
 mlruns/
 .DS_Store
+mlflow.db
+smoke*.db
+mlflow_ui.log

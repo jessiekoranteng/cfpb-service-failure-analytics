@@ -1,0 +1,31 @@
+{
+  "target": "monetary_relief",
+  "n_test": 94305,
+  "n_boot": 300,
+  "champion": "lightgbm (calibrated)",
+  "baseline": "logistic regression",
+  "pr_auc": {
+    "difference": -0.011313990960389542,
+    "ci95": [
+      -0.015348735683880699,
+      -0.006912990513227407
+    ],
+    "ci_includes_zero": false
+  },
+  "roc_auc": {
+    "difference": -0.001947937556816881,
+    "ci95": [
+      -0.0036023244253259672,
+      -0.0002373795904359329
+    ],
+    "ci_includes_zero": false
+  },
+  "recall_at_capacity": {
+    "difference": -0.02943106195519729,
+    "ci95": [
+      -0.03619085524385971,
+      -0.02298303892047739
+    ],
+    "ci_includes_zero": false
+  }
+}

@@ -1,0 +1,206 @@
+[
+  {
+    "request": {
+      "product": "Checking or savings account",
+      "sub_product": "Checking account",
+      "issue": "Closing an account",
+      "sub_issue": "Company closed your account",
+      "channel": "Web",
+      "region": "Northeast",
+      "company": "BANK OF AMERICA NATIONAL ASSOCIATION",
+      "company_volume_lag4": 814.0,
+      "month": 8
+    },
+    "status": 200,
+    "response": {
+      "relief_probability": 0.2371,
+      "untimely_probability": 0.0355,
+      "flag_for_review": true,
+      "review_threshold": 0.2102,
+      "reasons": [
+        {
+          "feature": "Company",
+          "value": "BANK OF AMERICA NATIONAL ASSOCIATION",
+          "effect": 2.614
+        },
+        {
+          "feature": "Sub-issue",
+          "value": "Company closed your account",
+          "effect": -0.2876
+        },
+        {
+          "feature": "Company volume (prior 4 wks)",
+          "value": "814.0",
+          "effect": -0.1147
+        }
+      ],
+      "unseen_values": [],
+      "model_versions": {
+        "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+        "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+      },
+      "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+    }
+  },
+  {
+    "request": {
+      "product": "Checking or savings account",
+      "sub_product": "Checking account",
+      "issue": "Managing an account",
+      "sub_issue": "Problem using a debit or ATM card",
+      "channel": "Referral",
+      "region": "South",
+      "company": "CAPITAL ONE FINANCIAL CORPORATION",
+      "company_volume_lag4": 288.0,
+      "month": 3
+    },
+    "status": 200,
+    "response": {
+      "relief_probability": 0.0496,
+      "untimely_probability": 0.0,
+      "flag_for_review": false,
+      "review_threshold": 0.1635,
+      "reasons": [
+        {
+          "feature": "Sub-issue",
+          "value": "Problem using a debit or ATM card",
+          "effect": 0.3529
+        },
+        {
+          "feature": "Month received",
+          "value": "3",
+          "effect": 0.108
+        },
+        {
+          "feature": "Company",
+          "value": "CAPITAL ONE FINANCIAL CORPORATION",
+          "effect": -0.0871
+        }
+      ],
+      "unseen_values": [],
+      "model_versions": {
+        "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+        "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+      },
+      "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+    }
+  },
+  {
+    "request": {
+      "product": "Money transfer, virtual currency, or money service",
+      "sub_product": "Mobile or digital wallet",
+      "issue": "Fraud or scam",
+      "sub_issue": "Unknown",
+      "channel": "Web",
+      "region": "South",
+      "company": "BLOCK INC",
+      "company_volume_lag4": 1114.0,
+      "month": 9
+    },
+    "status": 200,
+    "response": {
+      "relief_probability": 0.0002,
+      "untimely_probability": 0.0282,
+      "flag_for_review": false,
+      "review_threshold": 0.1635,
+      "reasons": [
+        {
+          "feature": "Company",
+          "value": "BLOCK INC",
+          "effect": -3.9071
+        },
+        {
+          "feature": "Month received",
+          "value": "9",
+          "effect": 0.5624
+        },
+        {
+          "feature": "Company volume (prior 4 wks)",
+          "value": "1114.0",
+          "effect": -0.1243
+        }
+      ],
+      "unseen_values": [],
+      "model_versions": {
+        "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+        "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+      },
+      "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+    }
+  },
+  {
+    "request": {
+      "product": "Checking or savings account",
+      "sub_product": "Checking account",
+      "issue": "Closing an account",
+      "sub_issue": "Company closed your account",
+      "channel": "Web",
+      "region": "Northeast",
+      "company": "BRAND NEW FINTECH LTD",
+      "company_volume_lag4": null,
+      "month": 8
+    },
+    "status": 200,
+    "response": {
+      "relief_probability": 0.0131,
+      "untimely_probability": 0.134,
+      "flag_for_review": false,
+      "review_threshold": 0.2102,
+      "reasons": [
+        {
+          "feature": "Sub-issue",
+          "value": "Company closed your account",
+          "effect": -0.6427
+        },
+        {
+          "feature": "Company",
+          "value": "BRAND NEW FINTECH LTD (not seen in training)",
+          "effect": 0.2985
+        },
+        {
+          "feature": "Issue",
+          "value": "Closing an account",
+          "effect": -0.0777
+        }
+      ],
+      "unseen_values": [
+        "company_key=BRAND NEW FINTECH LTD"
+      ],
+      "model_versions": {
+        "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+        "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+      },
+      "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+    }
+  },
+  {
+    "request": {
+      "product": "Checking or savings account",
+      "sub_product": "Checking account",
+      "issue": "Closing an account",
+      "sub_issue": "Company closed your account",
+      "channel": "Web",
+      "region": "Northeast",
+      "company": "BANK OF AMERICA NATIONAL ASSOCIATION",
+      "company_volume_lag4": 814.0,
+      "month": 13
+    },
+    "status": 422,
+    "response": {
+      "detail": [
+        {
+          "type": "less_than_equal",
+          "loc": [
+            "body",
+            "month"
+          ],
+          "msg": "Input should be less than or equal to 12",
+          "input": 13,
+          "ctx": {
+            "le": 12
+          }
+        }
+      ]
+    }
+  }
+]

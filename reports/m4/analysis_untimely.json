@@ -1,0 +1,161 @@
+{
+  "target": "untimely",
+  "algorithm": "lightgbm",
+  "deployed_threshold": 0.02821227461464081,
+  "test_flag_share": 0.40854628353302935,
+  "performance": {
+    "n": 94310,
+    "prevalence": 0.011748489025554023,
+    "roc_auc": 0.8915130586280627,
+    "pr_auc": 0.11266097427836337,
+    "pr_auc_lift": 9.589401159018458,
+    "brier": 0.011133408165615108,
+    "threshold": 0.12374581939799331,
+    "accuracy": 0.9652740960661648,
+    "precision": 0.12286808214410025,
+    "recall": 0.3185920577617328,
+    "f1": 0.177342376287365,
+    "tn": 90682,
+    "fp": 2520,
+    "fn": 755,
+    "tp": 353,
+    "recall_at_capacity": 0.970216606498195,
+    "precision_at_capacity": 0.027900337399429015,
+    "capacity_threshold": 0.02821227461464081
+  },
+  "performance_at_review_threshold": {
+    "precision": 0.027900337399429015,
+    "recall": 0.970216606498195,
+    "f1": 0.054240879963671225,
+    "tn": 55747,
+    "fp": 37455,
+    "fn": 33,
+    "tp": 1075
+  },
+  "calibration": {
+    "ece_calibrated": 0.003409711667040362,
+    "ece_uncalibrated": 0.005997805607015341,
+    "brier_calibrated": 0.011133408165615108
+  },
+  "fairness": {
+    "older_american": {
+      "n_group": 7375,
+      "n_rest": 86935,
+      "base_rate_group": 0.010711864406779662,
+      "base_rate_rest": 0.011836429516305286,
+      "selection_group": 0.40203389830508474,
+      "selection_rest": 0.4090987519411054,
+      "tpr_group": 0.9367088607594937,
+      "tpr_rest": 0.9727891156462585,
+      "fpr_group": 0.39624451754385964,
+      "fpr_rest": 0.4023467511000396,
+      "demographic_parity_difference": 0.007064853636020663,
+      "demographic_parity_ratio": 0.982730688855688,
+      "equalized_odds_difference": 0.036080254886764807,
+      "disparate_impact_ratio": 0.982730688855688,
+      "passes": {
+        "disparate_impact": true,
+        "equalized_odds": true,
+        "demographic_parity": true
+      }
+    },
+    "servicemember": {
+      "n_group": 8525,
+      "n_rest": 85785,
+      "base_rate_group": 0.00903225806451613,
+      "base_rate_rest": 0.012018418138369178,
+      "selection_group": 0.3718475073313783,
+      "selection_rest": 0.41219327388238036,
+      "tpr_group": 0.987012987012987,
+      "tpr_rest": 0.9689621726479146,
+      "fpr_group": 0.3662405303030303,
+      "fpr_rest": 0.405420393137787,
+      "demographic_parity_difference": 0.04034576655100208,
+      "demographic_parity_ratio": 0.9021192991069651,
+      "equalized_odds_difference": 0.03917986283475672,
+      "disparate_impact_ratio": 0.9021192991069651,
+      "passes": {
+        "disparate_impact": true,
+        "equalized_odds": true,
+        "demographic_parity": true
+      }
+    },
+    "tag_group": {
+      "table": [
+        {
+          "tag_group": "Both",
+          "selection": 0.387,
+          "tpr": 0.9333,
+          "fpr": 0.3808,
+          "n": 1349.0
+        },
+        {
+          "tag_group": "None recorded",
+          "selection": 0.4127,
+          "tpr": 0.971,
+          "fpr": 0.4059,
+          "n": 79759.0
+        },
+        {
+          "tag_group": "Older American",
+          "selection": 0.4054,
+          "tpr": 0.9375,
+          "fpr": 0.3997,
+          "n": 6026.0
+        },
+        {
+          "tag_group": "Servicemember",
+          "selection": 0.369,
+          "tpr": 1.0,
+          "fpr": 0.3635,
+          "n": 7176.0
+        }
+      ],
+      "selection_ratio_min_max": 0.8941119457232857,
+      "tpr_gap": 0.06669999999999998,
+      "fpr_gap": 0.04239999999999999
+    },
+    "region": {
+      "table": [
+        {
+          "region": "Midwest",
+          "selection": 0.399,
+          "tpr": 0.9754,
+          "fpr": 0.394,
+          "n": 14097.0
+        },
+        {
+          "region": "Northeast",
+          "selection": 0.3661,
+          "tpr": 0.9812,
+          "fpr": 0.3582,
+          "n": 16690.0
+        },
+        {
+          "region": "Other",
+          "selection": 0.489,
+          "tpr": 1.0,
+          "fpr": 0.474,
+          "n": 2039.0
+        },
+        {
+          "region": "South",
+          "selection": 0.4326,
+          "tpr": 0.962,
+          "fpr": 0.4262,
+          "n": 39480.0
+        },
+        {
+          "region": "West",
+          "selection": 0.3961,
+          "tpr": 0.9668,
+          "fpr": 0.3898,
+          "n": 22004.0
+        }
+      ],
+      "selection_ratio_min_max": 0.7486707566462167,
+      "tpr_gap": 0.038000000000000034,
+      "fpr_gap": 0.11579999999999996
+    }
+  }
+}

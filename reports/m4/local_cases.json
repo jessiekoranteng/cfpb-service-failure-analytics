@@ -1,0 +1,104 @@
+[
+  {
+    "case": "A. flagged and got relief (true positive)",
+    "row": 1024,
+    "score": 0.521,
+    "flagged": true,
+    "actual_relief": 1,
+    "top_contributions": [
+      {
+        "feature": "Company",
+        "value": "MT BANK CORPORATION",
+        "shap": 2.023965549623403
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Fee problem",
+        "shap": 1.2936807150230645
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "43.0",
+        "shap": 0.13884386675370267
+      },
+      {
+        "feature": "Issue",
+        "value": "Managing an account",
+        "shap": 0.05179745280546235
+      },
+      {
+        "feature": "Month received",
+        "value": "4",
+        "shap": 0.04288916989422067
+      }
+    ]
+  },
+  {
+    "case": "B. relief missed (false negative)",
+    "row": 697,
+    "score": 0.163,
+    "flagged": false,
+    "actual_relief": 1,
+    "top_contributions": [
+      {
+        "feature": "Company",
+        "value": "PAYPAL HOLDINGS INC",
+        "shap": 1.2528107005531959
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Problem using a debit or ATM card",
+        "shap": 0.36503407292955903
+      },
+      {
+        "feature": "Month received",
+        "value": "11",
+        "shap": 0.19660055054998407
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "534.0",
+        "shap": -0.0930623435972018
+      },
+      {
+        "feature": "Issue",
+        "value": "Managing an account",
+        "shap": 0.06819025055406182
+      }
+    ]
+  },
+  {
+    "case": "C. low risk, no relief",
+    "row": 17,
+    "score": 0.0,
+    "flagged": false,
+    "actual_relief": 0,
+    "top_contributions": [
+      {
+        "feature": "Company",
+        "value": "BLOCK INC",
+        "shap": -3.7798105254788026
+      },
+      {
+        "feature": "Issue",
+        "value": "Managing, opening, or closing your mobile wallet account",
+        "shap": -0.3842486561641965
+      },
+      {
+        "feature": "Month received",
+        "value": "5",
+        "shap": 0.2716184472644731
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "1010.0",
+        "shap": -0.20107452793861677
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Unknown",
+        "shap": -0.10765626299599607
+      }
+    ]
+  }
+]

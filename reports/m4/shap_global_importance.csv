@@ -1,0 +1,13 @@
+feature,mean_abs_shap,label,share
+company_key,1.4908,Company,64.8
+Sub-issue,0.295,Sub-issue,12.8
+company_volume_lag4,0.1737,Company volume (prior 4 wks),7.5
+month,0.1333,Month received,5.8
+Issue,0.1261,Issue,5.5
+Sub-product,0.052,Sub-product,2.3
+region,0.0237,Region,1.0
+Submitted via,0.0059,Channel,0.3
+Product,0.0007,Product,0.0
+subissue_unknown,0.0001,Sub-issue not given,0.0
+log_company_volume_lag4,0.0,"Company volume, log",0.0
+company_volume_lag4_missing,0.0,Volume history missing,0.0
