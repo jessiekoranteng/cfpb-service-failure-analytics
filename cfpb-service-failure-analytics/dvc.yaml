@@ -1,0 +1,9 @@
+stages:
+  ingest:
+    cmd: python -m src.ingestion.ccdb_ingest --zip data/raw/complaints.csv.zip --out data/interim/scope.parquet
+    deps:
+      - data/raw/complaints.csv.zip
+      - src/ingestion/ccdb_ingest.py
+    outs:
+      - data/interim/scope.parquet
+      - data/interim/snapshot.json
