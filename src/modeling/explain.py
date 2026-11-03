@@ -9,11 +9,9 @@ import pandas as pd
 import shap
 
 from src.modeling import config as C
+from src.modeling.scoring import PLAIN as _PLAIN
 
-PLAIN = {"company_key": "Company", "Issue": "Issue", "Sub-issue": "Sub-issue", "Sub-product": "Sub-product", "Product": "Product",
-         "Submitted via": "Channel", "region": "Region", "company_volume_lag4": "Company volume (prior 4 wks)",
-         "log_company_volume_lag4": "Company volume, log", "month": "Month received", "subissue_unknown": "Sub-issue not given",
-         "company_volume_lag4_missing": "Volume history missing"}
+PLAIN = _PLAIN  # one wording for reports, the API and the dashboard
 
 
 def load_bundle(target=C.PRIMARY):

@@ -1,0 +1,254 @@
+{
+  "health": {
+    "status": "ok",
+    "models_loaded": [
+      "relief",
+      "untimely"
+    ]
+  },
+  "model-info": {
+    "relief": {
+      "algorithm": "lightgbm",
+      "trained_at": "2026-11-01T22:13:43+00:00",
+      "review_threshold": 0.175
+    },
+    "untimely": {
+      "algorithm": "lightgbm",
+      "trained_at": "2026-11-01T22:19:19+00:00",
+      "review_threshold": 0.02821227461464081
+    },
+    "features": [
+      "Product",
+      "Sub-product",
+      "Issue",
+      "Sub-issue",
+      "Submitted via",
+      "region",
+      "company_key",
+      "company_volume_lag4",
+      "month"
+    ],
+    "review_capacity": 0.2
+  },
+  "example A": {
+    "relief_probability": 0.5213,
+    "untimely_probability": 0.0055,
+    "flag_for_review": true,
+    "review_threshold": 0.2102,
+    "reasons": [
+      {
+        "feature": "Company",
+        "value": "MT BANK CORPORATION",
+        "effect": 2.024
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Fee problem",
+        "effect": 1.2937
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "43.0",
+        "effect": 0.1388
+      }
+    ],
+    "unseen_values": [],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "example B": {
+    "relief_probability": 0.1635,
+    "untimely_probability": 0.0282,
+    "flag_for_review": true,
+    "review_threshold": 0.1635,
+    "reasons": [
+      {
+        "feature": "Company",
+        "value": "PAYPAL HOLDINGS INC",
+        "effect": 1.2528
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Problem using a debit or ATM card",
+        "effect": 0.365
+      },
+      {
+        "feature": "Month received",
+        "value": "11",
+        "effect": 0.1966
+      }
+    ],
+    "unseen_values": [],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "example C": {
+    "relief_probability": 0.0,
+    "untimely_probability": 0.0282,
+    "flag_for_review": false,
+    "review_threshold": 0.165,
+    "reasons": [
+      {
+        "feature": "Company",
+        "value": "BLOCK INC",
+        "effect": -3.7798
+      },
+      {
+        "feature": "Issue",
+        "value": "Managing, opening, or closing your mobile wallet account",
+        "effect": -0.3842
+      },
+      {
+        "feature": "Month received",
+        "value": "5",
+        "effect": 0.2716
+      }
+    ],
+    "unseen_values": [],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "example D": {
+    "relief_probability": 0.1635,
+    "untimely_probability": 0.0002,
+    "flag_for_review": true,
+    "review_threshold": 0.1635,
+    "reasons": [
+      {
+        "feature": "Company",
+        "value": "CITIBANK NA",
+        "effect": 1.6945
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "338.0",
+        "effect": 0.1413
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Deposits and withdrawals",
+        "effect": -0.1156
+      }
+    ],
+    "unseen_values": [],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "what-if original": {
+    "relief_probability": 0.5213,
+    "untimely_probability": 0.0055,
+    "flag_for_review": true,
+    "review_threshold": 0.2102,
+    "reasons": [
+      {
+        "feature": "Company",
+        "value": "MT BANK CORPORATION",
+        "effect": 2.024
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Fee problem",
+        "effect": 1.2937
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "43.0",
+        "effect": 0.1388
+      }
+    ],
+    "unseen_values": [],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "what-if changed": {
+    "relief_probability": 0.1372,
+    "untimely_probability": 0.0131,
+    "flag_for_review": false,
+    "review_threshold": 0.2102,
+    "reasons": [
+      {
+        "feature": "Company",
+        "value": "MT BANK CORPORATION",
+        "effect": 1.5468
+      },
+      {
+        "feature": "Sub-issue",
+        "value": "Deposits and withdrawals",
+        "effect": -0.1694
+      },
+      {
+        "feature": "Issue",
+        "value": "Managing an account",
+        "effect": 0.0768
+      }
+    ],
+    "unseen_values": [],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "unseen company": {
+    "relief_probability": 0.1875,
+    "untimely_probability": 0.0282,
+    "flag_for_review": false,
+    "review_threshold": 0.2102,
+    "reasons": [
+      {
+        "feature": "Sub-issue",
+        "value": "Fee problem",
+        "effect": 1.0042
+      },
+      {
+        "feature": "Company",
+        "value": "A BRAND NEW FINTECH LTD (not seen in training)",
+        "effect": 0.6177
+      },
+      {
+        "feature": "Company volume (prior 4 wks)",
+        "value": "43.0",
+        "effect": 0.078
+      }
+    ],
+    "unseen_values": [
+      "company_key=A BRAND NEW FINTECH LTD"
+    ],
+    "model_versions": {
+      "relief": "lightgbm@2026-11-01T22:13:43+00:00",
+      "untimely": "lightgbm@2026-11-01T22:19:19+00:00"
+    },
+    "note": "Decision support only. Scores are associations in historical complaints, not causes; a person decides."
+  },
+  "rejected request": {
+    "detail": [
+      {
+        "type": "less_than_equal",
+        "loc": [
+          "body",
+          "month"
+        ],
+        "msg": "Input should be less than or equal to 12",
+        "input": 13,
+        "ctx": {
+          "le": 12
+        }
+      }
+    ]
+  }
+}

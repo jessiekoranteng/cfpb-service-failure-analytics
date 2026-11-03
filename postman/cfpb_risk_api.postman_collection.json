@@ -1,0 +1,270 @@
+{
+  "info": {
+    "name": "CFPB complaint risk API (Module 4/5 demo)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"API is up\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Model info",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/model-info",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "model-info"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict: example A - Flagged, and relief followed",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product\": \"Checking or savings account\",\n  \"sub_product\": \"Checking account\",\n  \"issue\": \"Managing an account\",\n  \"sub_issue\": \"Fee problem\",\n  \"channel\": \"Web\",\n  \"region\": \"Northeast\",\n  \"company\": \"MT BANK CORPORATION\",\n  \"company_volume_lag4\": 43.0,\n  \"month\": 4\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200\", () => pm.response.to.have.status(200));",
+              "const j = pm.response.json();",
+              "pm.test(\"probability in [0,1]\", () => pm.expect(j.relief_probability).to.be.within(0,1));",
+              "pm.test(\"no decision or deadline field\", () => { pm.expect(j).to.not.have.property(\"decision\"); pm.expect(j).to.not.have.property(\"deadline\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict: example B - Relief followed; just under the single 17.5% line",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product\": \"Checking or savings account\",\n  \"sub_product\": \"Checking account\",\n  \"issue\": \"Managing an account\",\n  \"sub_issue\": \"Problem using a debit or ATM card\",\n  \"channel\": \"Web\",\n  \"region\": \"South\",\n  \"company\": \"PAYPAL HOLDINGS INC\",\n  \"company_volume_lag4\": 534.0,\n  \"month\": 11\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200\", () => pm.response.to.have.status(200));",
+              "const j = pm.response.json();",
+              "pm.test(\"probability in [0,1]\", () => pm.expect(j.relief_probability).to.be.within(0,1));",
+              "pm.test(\"no decision or deadline field\", () => { pm.expect(j).to.not.have.property(\"decision\"); pm.expect(j).to.not.have.property(\"deadline\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict: example C - Very low risk",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product\": \"Money transfer, virtual currency, or money service\",\n  \"sub_product\": \"Mobile or digital wallet\",\n  \"issue\": \"Managing, opening, or closing your mobile wallet account\",\n  \"sub_issue\": \"Unknown\",\n  \"channel\": \"Web\",\n  \"region\": \"West\",\n  \"company\": \"BLOCK INC\",\n  \"company_volume_lag4\": 1010.0,\n  \"month\": 5\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200\", () => pm.response.to.have.status(200));",
+              "const j = pm.response.json();",
+              "pm.test(\"probability in [0,1]\", () => pm.expect(j.relief_probability).to.be.within(0,1));",
+              "pm.test(\"no decision or deadline field\", () => { pm.expect(j).to.not.have.property(\"decision\"); pm.expect(j).to.not.have.property(\"deadline\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict: example D - No relief; just under the single 17.5% line",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product\": \"Checking or savings account\",\n  \"sub_product\": \"Checking account\",\n  \"issue\": \"Managing an account\",\n  \"sub_issue\": \"Deposits and withdrawals\",\n  \"channel\": \"Web\",\n  \"region\": \"South\",\n  \"company\": \"CITIBANK NA\",\n  \"company_volume_lag4\": 338.0,\n  \"month\": 2\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200\", () => pm.response.to.have.status(200));",
+              "const j = pm.response.json();",
+              "pm.test(\"probability in [0,1]\", () => pm.expect(j.relief_probability).to.be.within(0,1));",
+              "pm.test(\"no decision or deadline field\", () => { pm.expect(j).to.not.have.property(\"decision\"); pm.expect(j).to.not.have.property(\"deadline\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid month (expect 422)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product\": \"Checking or savings account\",\n  \"sub_product\": \"Checking account\",\n  \"issue\": \"Managing an account\",\n  \"sub_issue\": \"Fee problem\",\n  \"channel\": \"Web\",\n  \"region\": \"Northeast\",\n  \"company\": \"MT BANK CORPORATION\",\n  \"company_volume_lag4\": 43.0,\n  \"month\": 13\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"rejected\", () => pm.response.to.have.status(422));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

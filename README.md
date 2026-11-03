@@ -34,6 +34,19 @@ python -m flows.ccdb_pipeline --source data/raw/complaints.csv.zip
 pytest -q
 ```
 
+## Module 5: stakeholder dashboard and presentation
+
+A Streamlit dashboard for non-technical stakeholders, deployed on Streamlit Community Cloud (entrypoint `app/dashboard.py`, requirements `app/requirements.txt`, Python 3.11).
+It reads one aggregated file (`app/assets/dashboard_data.json`, no complaint-level data) and the two Module 4 model files, and scores through the same
+`src/modeling/scoring.py` the API uses. The **Ethical Compliance** page computes its metrics with Fairlearn from published confusion counts.
+
+```bash
+pip install -r app/requirements.txt && streamlit run app/dashboard.py     # http://localhost:8501
+python -m src.dashboard.build_assets      # rebuild the aggregate file after re-running Module 4
+python scripts/api_demo.py --spawn        # API demo (or import postman/cfpb_risk_api.postman_collection.json into Postman)
+make dashboard-test
+```
+
 ## Module 4: predictive model, explainability and fairness
 
 Two LightGBM risk models (monetary relief; late response) trained on a time-aware split of the Module 3 table, tracked in MLflow

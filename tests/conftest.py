@@ -1,7 +1,12 @@
+import sys
 from pathlib import Path
 
 import pandas as pd
 import pytest
+
+APP = str(Path(__file__).resolve().parents[1] / "app")
+if APP not in sys.path:  # dashboard views import their shared helpers as `from common import ...`
+    sys.path.insert(0, APP)
 
 SAMPLE = Path(__file__).parent / "fixtures" / "ccdb_sample.csv"
 

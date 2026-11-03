@@ -4,3 +4,7 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 130
+
+[tool.ruff.lint.per-file-ignores]
+# Streamlit layout code nests `with col:` / `with st.container():` on purpose
+"app/views/*" = ["SIM117"]
