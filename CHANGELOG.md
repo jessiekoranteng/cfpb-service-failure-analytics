@@ -1,6 +1,17 @@
 # Changelog
 All notable changes follow Semantic Versioning and Keep a Changelog.
 
+## [0.5.0] - 2026-11-02
+### Added
+- Module 5 stakeholder dashboard (`app/dashboard.py`, `app/views/`): Overview, What drives predictions, Try a complaint (what-if with side-by-side scenarios and one-field sweeps), Ethical Compliance (Fairlearn metrics from published aggregates, interactive review-line slider, bias found/addressed, proxy test) and Limits and transparency.
+- `src/modeling/scoring.py`: one scoring implementation shared by the API and the dashboard.
+- `src/dashboard/`: `build_assets.py` (aggregated, complaint-free data file `app/assets/dashboard_data.json`) and `fair.py` (Fairlearn MetricFrame on weighted confusion counts).
+- `scripts/api_demo.py` and a Postman collection; `app/requirements.txt` for Streamlit Community Cloud; `.streamlit/config.toml`.
+- 13 dashboard tests; CI `dashboard` job; Make targets.
+### Changed
+- `api/main.py` delegates scoring to `src.modeling.scoring.Scorer` (responses unchanged; 23 model tests still pass).
+- `Dockerfile.dashboard` rebuilt for the new app.
+
 ## [0.4.0] - 2026-11-01
 ### Added
 - Module 4 modelling package `src/modeling/` (time-aware split, leakage guard, baseline, logistic regression / random forest / LightGBM with cross-validated random search, isotonic calibration, MLflow tracking and registry).
