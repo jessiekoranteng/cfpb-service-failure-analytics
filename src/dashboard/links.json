@@ -1,1 +1,1 @@
-{"monitoring_dashboard": null, "live_api": null, "live_dashboard": null}
+{"monitoring_dashboard": "https://cfpb-monitoring-jessiek.streamlit.app/", "live_api": "https://cfpb-risk-api.onrender.com/docs", "live_dashboard": "https://cfpb-service-failure-analytics-f7eyncstvqcytmav3sx2kj.streamlit.app/"}
