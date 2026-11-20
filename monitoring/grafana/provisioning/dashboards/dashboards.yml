@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: risk-api
+    folder: Complaint risk
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

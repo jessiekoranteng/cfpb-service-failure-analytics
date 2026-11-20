@@ -1,0 +1,112 @@
+{
+ "windows": {
+  "fit_end": "2025-09-30",
+  "calib_end": "2025-12-31",
+  "gate_end": "2026-06-30"
+ },
+ "dry_run": true,
+ "champion": {
+  "n": 64639,
+  "relief_rate": 0.11769984065347545,
+  "roc_auc": 0.7862459448650438,
+  "pr_auc": 0.3112073338739014,
+  "ece": 0.01810547941582201,
+  "flag_share": 0.19666145825275763,
+  "recall_at_flag": 0.4993427970557308,
+  "region_selection_ratio": 0.8251312738679759,
+  "pr_auc_lift": 2.6440760849467817,
+  "f2_older_american": {
+   "tpr_gap": 0.041568923921865064,
+   "fpr_gap": 0.03332061796681288
+  },
+  "f2_servicemember": {
+   "tpr_gap": 0.01624821391243786,
+   "fpr_gap": 0.018988362158945976
+  }
+ },
+ "challenger": {
+  "n": 64639,
+  "relief_rate": 0.11769984065347545,
+  "roc_auc": 0.7932210713025426,
+  "pr_auc": 0.3166885456040511,
+  "ece": 0.018677424178474525,
+  "flag_share": 0.2050929005708628,
+  "recall_at_flag": 0.5216876971608833,
+  "region_selection_ratio": 0.5555519319170084,
+  "pr_auc_lift": 2.690645491495828,
+  "f2_older_american": {
+   "tpr_gap": 0.05177577319641696,
+   "fpr_gap": 0.034679240094212
+  },
+  "f2_servicemember": {
+   "tpr_gap": 0.021162358179115603,
+   "fpr_gap": 0.02580213922922639
+  }
+ },
+ "explanation_stability_spearman": 0.9929824561403509,
+ "passed": false,
+ "gates": [
+  {
+   "gate": "performance: ROC-AUC >= 0.70 and within 0.01 of champion",
+   "passed": true,
+   "detail": "challenger 0.7932 vs champion 0.7862"
+  },
+  {
+   "gate": "performance: PR-AUC within 0.01 of champion",
+   "passed": true,
+   "detail": "challenger 0.3167 vs champion 0.3112"
+  },
+  {
+   "gate": "calibration: ECE <= 0.05",
+   "passed": true,
+   "detail": "challenger 0.0187 vs champion 0.0181"
+  },
+  {
+   "gate": "capacity: flagged share within 15% to 25%",
+   "passed": true,
+   "detail": "0.205"
+  },
+  {
+   "gate": "fairness: regional selection ratio >= 0.80",
+   "passed": false,
+   "detail": "0.556 (champion 0.825)"
+  },
+  {
+   "gate": "fairness F2: older_american tpr_gap within 0.05 or no worse than champion + 0.01",
+   "passed": false,
+   "detail": "challenger 0.0518 vs champion 0.0416"
+  },
+  {
+   "gate": "fairness F2: older_american fpr_gap within 0.05 or no worse than champion + 0.01",
+   "passed": true,
+   "detail": "challenger 0.0347 vs champion 0.0333"
+  },
+  {
+   "gate": "fairness F2: servicemember tpr_gap within 0.05 or no worse than champion + 0.01",
+   "passed": true,
+   "detail": "challenger 0.0212 vs champion 0.0162"
+  },
+  {
+   "gate": "fairness F2: servicemember fpr_gap within 0.05 or no worse than champion + 0.01",
+   "passed": true,
+   "detail": "challenger 0.0258 vs champion 0.0190"
+  },
+  {
+   "gate": "explanation stability: global SHAP ranking Spearman >= 0.80 vs champion",
+   "passed": true,
+   "detail": "0.993"
+  },
+  {
+   "gate": "no forbidden or protected input",
+   "passed": true,
+   "detail": "feature list checked"
+  },
+  {
+   "gate": "input contract unchanged",
+   "passed": true,
+   "detail": "9 fields"
+  }
+ ],
+ "registered_version": 3,
+ "alias": "challenger"
+}

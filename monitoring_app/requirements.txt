@@ -1,0 +1,5 @@
+# Monitoring dashboard runtime (Streamlit Community Cloud reads this file because it sits next to the entrypoint). Python 3.11.
+streamlit==1.66.1
+plotly==7.1.0
+pandas==3.1.0
+numpy==2.4.6

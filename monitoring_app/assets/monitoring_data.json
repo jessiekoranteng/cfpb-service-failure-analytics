@@ -1,0 +1,721 @@
+{
+ "generated_at": "2026-11-20T00:02:06+00:00",
+ "basis": "replay: complaints from the test window (never used in training or calibration) scored month by month with the deployed model, as if received live",
+ "reference": {
+  "window": "2025-04 to 2025-09",
+  "n": 50891,
+  "relief_rate": 0.10204161836081035
+ },
+ "replay": {
+  "window": "2025-10 to 2026-06",
+  "n": 94305,
+  "relief_rate": 0.11313291978155983,
+  "flag_share": 0.19533428768357988
+ },
+ "rules": {
+  "roc_auc": {
+   "direction": "min",
+   "warn": 0.74,
+   "hard": 0.7,
+   "source": "Module 4 pre-registered ROC-AUC >= 0.70; warn 0.04 above the limit"
+  },
+  "pr_auc_lift": {
+   "direction": "min",
+   "warn": 2.3,
+   "hard": 2.0,
+   "source": "Module 4 pre-registered PR-AUC lift >= 2.0"
+  },
+  "recall_at_flag": {
+   "direction": "min",
+   "warn": 0.48,
+   "hard": 0.45,
+   "source": "Module 4 recall at review capacity >= 0.45"
+  },
+  "ece": {
+   "direction": "max",
+   "warn": 0.03,
+   "hard": 0.05,
+   "source": "Module 4 alert > 0.03 (warn); Module 2 KPI <= 0.05 (hard), reconciliation C13"
+  },
+  "flag_share": {
+   "direction": "band",
+   "warn": [
+    0.15,
+    0.25
+   ],
+   "hard": [
+    0.1,
+    0.3
+   ],
+   "source": "Model Card s10: flagged share outside 15%-25%; hard band is an addition"
+  },
+  "unseen_company_share": {
+   "direction": "max",
+   "warn": 0.05,
+   "hard": 0.1,
+   "source": "Model Card s10: unseen values > 5%; hard 10% added (unseen companies fall to ROC-AUC 0.626)"
+  },
+  "psi_company": {
+   "direction": "max",
+   "warn": 0.1,
+   "hard": 0.2,
+   "source": "Model Card s10: company-mix PSI > 0.20; 0.10 is the conventional warning level"
+  },
+  "psi_score": {
+   "direction": "max",
+   "warn": 0.1,
+   "hard": 0.2,
+   "source": "Score distribution shift, same PSI convention"
+  },
+  "region_selection_ratio": {
+   "direction": "min",
+   "warn": 0.8,
+   "hard": 0.7,
+   "source": "Four-fifths rule 0.80 (pre-registered); hard 0.70 added"
+  },
+  "f2_tpr_gap": {
+   "direction": "max",
+   "warn": 0.05,
+   "hard": 0.1,
+   "source": "Charter F2 limit 0.05; Module 4 quarterly regional limit 0.10"
+  },
+  "f2_fpr_gap": {
+   "direction": "max",
+   "warn": 0.05,
+   "hard": 0.1,
+   "source": "Charter F2 limit 0.05"
+  }
+ },
+ "monthly": [
+  {
+   "month": "2025-10",
+   "n": 9393,
+   "relief_rate": 0.0849568827850527,
+   "flag_share": 0.16011923773022463,
+   "roc_auc": 0.8275638193797467,
+   "pr_auc_lift": 3.3834184243303005,
+   "recall_at_flag": 0.5338345864661654,
+   "ece": 0.004377486669040389,
+   "unseen_company_share": 0.0028744809964867456,
+   "psi_company": 0.273591907406898,
+   "psi_score": 0.04196910483630387,
+   "region_selection_ratio": 0.7361381935748981,
+   "smallest_region_n": 170,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "hard",
+    "psi_score": "ok",
+    "region_selection_ratio": "warn"
+   }
+  },
+  {
+   "month": "2025-11",
+   "n": 8359,
+   "relief_rate": 0.10754874985046058,
+   "flag_share": 0.2128245005383419,
+   "roc_auc": 0.791783617185613,
+   "pr_auc_lift": 2.7053398816188374,
+   "recall_at_flag": 0.5595105672969967,
+   "ece": 0.009980170476966201,
+   "unseen_company_share": 0.005981576743629621,
+   "psi_company": 0.04362965119633236,
+   "psi_score": 0.011993626961168721,
+   "region_selection_ratio": 0.8281669212036159,
+   "smallest_region_n": 189,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "ok"
+   }
+  },
+  {
+   "month": "2025-12",
+   "n": 11914,
+   "relief_rate": 0.11448715796541883,
+   "flag_share": 0.2036259862346819,
+   "roc_auc": 0.788499186946672,
+   "pr_auc_lift": 2.6262479388834223,
+   "recall_at_flag": 0.5124633431085044,
+   "ece": 0.014711403584017927,
+   "unseen_company_share": 0.0055397011918751045,
+   "psi_company": 0.04286271611589759,
+   "psi_score": 0.016850537399891768,
+   "region_selection_ratio": 0.8674110338585592,
+   "smallest_region_n": 240,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "ok"
+   }
+  },
+  {
+   "month": "2026-01",
+   "n": 10542,
+   "relief_rate": 0.11762473913868336,
+   "flag_share": 0.177765129956365,
+   "roc_auc": 0.8005133304665664,
+   "pr_auc_lift": 2.9191896332040614,
+   "recall_at_flag": 0.5,
+   "ece": 0.029442088967266567,
+   "unseen_company_share": 0.004553215708594195,
+   "psi_company": 0.054974960117517194,
+   "psi_score": 0.08672259549526828,
+   "region_selection_ratio": 0.7504739835685696,
+   "smallest_region_n": 235,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "warn"
+   }
+  },
+  {
+   "month": "2026-02",
+   "n": 9264,
+   "relief_rate": 0.11539291882556131,
+   "flag_share": 0.207793609671848,
+   "roc_auc": 0.793470202175572,
+   "pr_auc_lift": 2.7582718961273174,
+   "recall_at_flag": 0.5275958840037418,
+   "ece": 0.02382970143173769,
+   "unseen_company_share": 0.009607081174438687,
+   "psi_company": 0.04161523414909462,
+   "psi_score": 0.034460789355124234,
+   "region_selection_ratio": 0.9005752235835781,
+   "smallest_region_n": 235,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "ok"
+   }
+  },
+  {
+   "month": "2026-03",
+   "n": 12820,
+   "relief_rate": 0.1109984399375975,
+   "flag_share": 0.1985179407176287,
+   "roc_auc": 0.7896928097671645,
+   "pr_auc_lift": 2.678230999474776,
+   "recall_at_flag": 0.5080815179198875,
+   "ece": 0.014637492107339629,
+   "unseen_company_share": 0.004836193447737909,
+   "psi_company": 0.05352943567560865,
+   "psi_score": 0.04570913155409951,
+   "region_selection_ratio": 0.8056446388079042,
+   "smallest_region_n": 315,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "ok"
+   }
+  },
+  {
+   "month": "2026-04",
+   "n": 10185,
+   "relief_rate": 0.11880216003927344,
+   "flag_share": 0.20117820324005892,
+   "roc_auc": 0.7831671539400078,
+   "pr_auc_lift": 2.5590371346253624,
+   "recall_at_flag": 0.4983471074380165,
+   "ece": 0.018073020887741306,
+   "unseen_company_share": 0.007756504663721159,
+   "psi_company": 0.06863397111973837,
+   "psi_score": 0.043294731656427,
+   "region_selection_ratio": 0.8418919626907417,
+   "smallest_region_n": 174,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "ok"
+   }
+  },
+  {
+   "month": "2026-05",
+   "n": 9601,
+   "relief_rate": 0.12415373398604312,
+   "flag_share": 0.19977085720237475,
+   "roc_auc": 0.7712663146149739,
+   "pr_auc_lift": 2.4107423831380324,
+   "recall_at_flag": 0.4823825503355705,
+   "ece": 0.02361585199776089,
+   "unseen_company_share": 0.004791167586709718,
+   "psi_company": 0.0866189523393734,
+   "psi_score": 0.05066402650768946,
+   "region_selection_ratio": 0.8084165417660594,
+   "smallest_region_n": 231,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "ok"
+   }
+  },
+  {
+   "month": "2026-06",
+   "n": 12227,
+   "relief_rate": 0.1205528747853112,
+   "flag_share": 0.1963686922384886,
+   "roc_auc": 0.7803951653516022,
+   "pr_auc_lift": 2.5885073195346853,
+   "recall_at_flag": 0.4843962008141113,
+   "ece": 0.024199360887344482,
+   "unseen_company_share": 0.004825386439846242,
+   "psi_company": 0.09270610658132775,
+   "psi_score": 0.041426316408652755,
+   "region_selection_ratio": 0.6896164948453608,
+   "smallest_region_n": 250,
+   "levels": {
+    "roc_auc": "ok",
+    "pr_auc_lift": "ok",
+    "recall_at_flag": "ok",
+    "ece": "ok",
+    "flag_share": "ok",
+    "unseen_company_share": "ok",
+    "psi_company": "ok",
+    "psi_score": "ok",
+    "region_selection_ratio": "hard"
+   }
+  }
+ ],
+ "alerts": [
+  {
+   "month": "2025-10",
+   "signal": "psi_company",
+   "value": 0.273591907406898,
+   "level": "hard",
+   "rule": "Model Card s10: company-mix PSI > 0.20; 0.10 is the conventional warning level",
+   "noisy": false
+  },
+  {
+   "month": "2025-10",
+   "signal": "region_selection_ratio",
+   "value": 0.7361381935748981,
+   "level": "warn",
+   "rule": "Four-fifths rule 0.80 (pre-registered); hard 0.70 added",
+   "noisy": true
+  },
+  {
+   "month": "2026-01",
+   "signal": "region_selection_ratio",
+   "value": 0.7504739835685696,
+   "level": "warn",
+   "rule": "Four-fifths rule 0.80 (pre-registered); hard 0.70 added",
+   "noisy": true
+  },
+  {
+   "month": "2026-06",
+   "signal": "region_selection_ratio",
+   "value": 0.6896164948453608,
+   "level": "hard",
+   "rule": "Four-fifths rule 0.80 (pre-registered); hard 0.70 added",
+   "noisy": true
+  }
+ ],
+ "fairness_tags": {
+  "replay_window": {
+   "older_american": {
+    "tpr_gap": 0.046700361640015675,
+    "fpr_gap": 0.036623412220277346,
+    "n_group": 7372,
+    "positives_group": 944,
+    "tpr_ci95": [
+     0.015921261509434143,
+     0.07491493184711791
+    ],
+    "fpr_ci95": [
+     0.026529337933318495,
+     0.04669141647979992
+    ],
+    "tpr_level": "ok",
+    "fpr_level": "ok",
+    "confirmed_breach": false
+   },
+   "servicemember": {
+    "tpr_gap": 0.0030697835393015405,
+    "fpr_gap": 0.016851673519277188,
+    "n_group": 8524,
+    "positives_group": 937,
+    "tpr_ci95": [
+     0.0005250753100962208,
+     0.03850528998886734
+    ],
+    "fpr_ci95": [
+     0.007910455930351766,
+     0.026104619993065032
+    ],
+    "tpr_level": "ok",
+    "fpr_level": "ok",
+    "confirmed_breach": false
+   }
+  },
+  "by_quarter": {
+   "2025Q4": {
+    "older_american": {
+     "tpr_gap": 0.05827568375889197,
+     "fpr_gap": 0.04451997890142406,
+     "n_group": 2082,
+     "positives_group": 255,
+     "tpr_ci95": [
+      0.005941964249146856,
+      0.12115890813688936
+     ],
+     "fpr_ci95": [
+      0.02522494523040438,
+      0.06505137385187951
+     ],
+     "tpr_level": "warn",
+     "fpr_level": "ok",
+     "confirmed_breach": false
+    },
+    "servicemember": {
+     "tpr_gap": 0.051352441927717374,
+     "fpr_gap": 0.011972691339519975,
+     "n_group": 2603,
+     "positives_group": 266,
+     "tpr_ci95": [
+      0.0020258940003112847,
+      0.10990652693687987
+     ],
+     "fpr_ci95": [
+      0.0007893155678935234,
+      0.028787430625584573
+     ],
+     "tpr_level": "warn",
+     "fpr_level": "ok",
+     "confirmed_breach": false
+    }
+   },
+   "2026Q1": {
+    "older_american": {
+     "tpr_gap": 0.036072332570658006,
+     "fpr_gap": 0.0343331633905474,
+     "n_group": 2542,
+     "positives_group": 318,
+     "tpr_ci95": [
+      0.0010245497076494235,
+      0.0982478415303918
+     ],
+     "fpr_ci95": [
+      0.01575097682480382,
+      0.04840630106717029
+     ],
+     "tpr_level": "ok",
+     "fpr_level": "ok",
+     "confirmed_breach": false
+    },
+    "servicemember": {
+     "tpr_gap": 0.022570628168262497,
+     "fpr_gap": 0.023191207990282126,
+     "n_group": 2979,
+     "positives_group": 316,
+     "tpr_ci95": [
+      0.0021888723843306148,
+      0.08247059554026
+     ],
+     "fpr_ci95": [
+      0.009360899027801309,
+      0.036958962292522754
+     ],
+     "tpr_level": "ok",
+     "fpr_level": "ok",
+     "confirmed_breach": false
+    }
+   },
+   "2026Q2": {
+    "older_american": {
+     "tpr_gap": 0.04500001922551916,
+     "fpr_gap": 0.032106405328497484,
+     "n_group": 2748,
+     "positives_group": 371,
+     "tpr_ci95": [
+      0.003908227490109667,
+      0.10042702207036344
+     ],
+     "fpr_ci95": [
+      0.017321644975731465,
+      0.04802021268418793
+     ],
+     "tpr_level": "ok",
+     "fpr_level": "ok",
+     "confirmed_breach": false
+    },
+    "servicemember": {
+     "tpr_gap": 0.011514014504522163,
+     "fpr_gap": 0.014670522566165162,
+     "n_group": 2942,
+     "positives_group": 355,
+     "tpr_ci95": [
+      0.001595364581168289,
+      0.06446436782112537
+     ],
+     "fpr_ci95": [
+      0.0010109438578579115,
+      0.032155021713352265
+     ],
+     "tpr_level": "ok",
+     "fpr_level": "ok",
+     "confirmed_breach": false
+    }
+   }
+  }
+ },
+ "fairness_cuts": {
+  "product": {
+   "groups": [
+    {
+     "group": "Checking or savings account",
+     "n": 65023,
+     "positives": 8387,
+     "negatives": 56636,
+     "flag_rate": 0.2543253925534042,
+     "tpr": 0.5900798855371409,
+     "fpr": 0.20460484497492762,
+     "suppressed": false
+    },
+    {
+     "group": "Money transfer, virtual currency, or money service",
+     "n": 29282,
+     "positives": 2282,
+     "negatives": 27000,
+     "flag_rate": 0.06433986749538965,
+     "tpr": 0.20946538124452235,
+     "fpr": 0.05207407407407407,
+     "suppressed": false
+    }
+   ],
+   "tpr_spread": 0.3806145042926185,
+   "fpr_spread": 0.15253077090085354,
+   "selection_ratio": 0.25298247591175677
+  },
+  "company_size_tier": {
+   "groups": [
+    {
+     "group": "Large (6-50)",
+     "n": 48582,
+     "positives": 5814,
+     "negatives": 42768,
+     "flag_rate": 0.2159030093450249,
+     "tpr": 0.44685242518059853,
+     "fpr": 0.18450710811821924,
+     "suppressed": false
+    },
+    {
+     "group": "Top 5",
+     "n": 37013,
+     "positives": 4408,
+     "negatives": 32605,
+     "flag_rate": 0.19360765136573635,
+     "tpr": 0.6150181488203267,
+     "fpr": 0.1366354853550069,
+     "suppressed": false
+    },
+    {
+     "group": "Mid (51-300)",
+     "n": 7533,
+     "positives": 400,
+     "negatives": 7133,
+     "flag_rate": 0.09889818133545732,
+     "tpr": 0.295,
+     "fpr": 0.08790130379924295,
+     "suppressed": false
+    },
+    {
+     "group": "Small (301+)",
+     "n": 651,
+     "positives": 23,
+     "negatives": 628,
+     "flag_rate": 0.02457757296466974,
+     "tpr": 0.0,
+     "fpr": 0.025477707006369428,
+     "suppressed": false
+    },
+    {
+     "group": "Unseen",
+     "n": 526,
+     "positives": 24,
+     "negatives": 502,
+     "flag_rate": 0.009505703422053232,
+     "tpr": 0.0,
+     "fpr": 0.0099601593625498,
+     "suppressed": false
+    }
+   ],
+   "tpr_spread": 0.6150181488203267,
+   "fpr_spread": 0.17454694875566945,
+   "selection_ratio": 0.044027655987242835
+  },
+  "region": {
+   "groups": [
+    {
+     "group": "South",
+     "n": 39478,
+     "positives": 4084,
+     "negatives": 35394,
+     "flag_rate": 0.19154972389685396,
+     "tpr": 0.5026934378060725,
+     "fpr": 0.1556478499180652,
+     "suppressed": false
+    },
+    {
+     "group": "West",
+     "n": 22002,
+     "positives": 2840,
+     "negatives": 19162,
+     "flag_rate": 0.19002817925643123,
+     "tpr": 0.4830985915492958,
+     "fpr": 0.14659221375639286,
+     "suppressed": false
+    },
+    {
+     "group": "Northeast",
+     "n": 16689,
+     "positives": 2165,
+     "negatives": 14524,
+     "flag_rate": 0.2096590568638025,
+     "tpr": 0.5422632794457275,
+     "fpr": 0.1600798678050124,
+     "suppressed": false
+    },
+    {
+     "group": "Midwest",
+     "n": 14097,
+     "positives": 1403,
+     "negatives": 12694,
+     "flag_rate": 0.19897850606512024,
+     "tpr": 0.5174625801853172,
+     "fpr": 0.1637781629116118,
+     "suppressed": false
+    },
+    {
+     "group": "Other",
+     "n": 2039,
+     "positives": 177,
+     "negatives": 1862,
+     "flag_rate": 0.1834232466895537,
+     "tpr": 0.576271186440678,
+     "fpr": 0.1460794844253491,
+     "suppressed": false
+    }
+   ],
+   "tpr_spread": 0.09317259489138219,
+   "fpr_spread": 0.017698678486262692,
+   "selection_ratio": 0.8748644081171654
+  }
+ },
+ "drift": {
+  "evidently_version": "0.7.23",
+  "sample_per_window": 20000,
+  "drifted_columns": {
+   "count": 2.0,
+   "share": 0.2857142857142857
+  },
+  "columns": [
+   {
+    "column": "company_volume_lag4",
+    "method": "Wasserstein distance (normed)",
+    "threshold": 0.1,
+    "value": 0.25399815675898807,
+    "drifted": true
+   },
+   {
+    "column": "relief_probability",
+    "method": "Wasserstein distance (normed)",
+    "threshold": 0.1,
+    "value": 0.0368673374961844,
+    "drifted": false
+   },
+   {
+    "column": "Product",
+    "method": "Jensen-Shannon distance",
+    "threshold": 0.1,
+    "value": 0.0020621938069039026,
+    "drifted": false
+   },
+   {
+    "column": "Issue",
+    "method": "Jensen-Shannon distance",
+    "threshold": 0.1,
+    "value": 0.03765424318143558,
+    "drifted": false
+   },
+   {
+    "column": "Submitted via",
+    "method": "Jensen-Shannon distance",
+    "threshold": 0.1,
+    "value": 0.019369086701517147,
+    "drifted": false
+   },
+   {
+    "column": "region",
+    "method": "Jensen-Shannon distance",
+    "threshold": 0.1,
+    "value": 0.002621064187158064,
+    "drifted": false
+   },
+   {
+    "column": "company_key",
+    "method": "Jensen-Shannon distance",
+    "threshold": 0.1,
+    "value": 0.12227372258914807,
+    "drifted": true
+   }
+  ]
+ },
+ "live_api": {
+  "available": false
+ },
+ "limits": [
+  "Replay, not live traffic: no human review or analyst override is observed, so analyst override rate is not computed.",
+  "Tag coverage is about 15%; 'rest' for the tag gaps includes untagged complaints (same definition as Module 4).",
+  "Subgroup cells with fewer than 10 positives or negatives are suppressed."
+ ],
+ "crosscheck": {
+  "replay_roc_auc": 0.7908613290229389,
+  "replay_ece": 0.014998745202460473
+ }
+}

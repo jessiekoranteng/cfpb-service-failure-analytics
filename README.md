@@ -21,6 +21,34 @@ Download the bulk file from https://files.consumerfinance.gov/ccdb/complaints.cs
 `data/` (DVC) · `docs/` · `notebooks/` · `src/{ingestion,quality,baseline,features,models,fairness,triage_sim}/` ·
 `app/` · `api/` · `tests/` · `models/` · `.github/workflows/ci.yml` · `dvc.yaml` · `Dockerfile` · `Dockerfile.api`
 
+## Final Project: integrated system
+
+Everything from Modules 2 to 5 plus monitoring, retraining and governance. Start with [docs/final/reconciliation_log.md](docs/final/reconciliation_log.md)
+(18 places where the modules disagreed, and which source governs) and [docs/final/ethical_ai_framework.md](docs/final/ethical_ai_framework.md).
+
+| Piece | Where | Run |
+|---|---|---|
+| Data pipeline (Module 3) | `flows/`, `src/pipeline/` | `docker compose --profile pipeline run --rm pipeline` |
+| Scoring API with audit trail and `/metrics` | `api/`, `src/modeling/explanation_store.py` | `docker compose up api` then http://localhost:8000/docs |
+| Stakeholder and explainability dashboard (SHAP, LIME, counterfactuals, Fairlearn) | `app/` | `streamlit run app/dashboard.py` |
+| Monitoring dashboard (Evidently, Fairlearn, alert rules) | `monitoring_app/`, `src/monitoring/` | `make monitor` then `make monitoring-dashboard` |
+| Live-traffic monitoring | `monitoring/` (Prometheus rules, Grafana dashboard) | `docker compose up` then :9090 and :3000 |
+| Retraining and promotion | `src/modeling/retrain.py` | `make retrain-dry-run`; promotion needs `--approver` and `--ticket` |
+| CI/CD | `.github/workflows/ci.yml` | on every pull request |
+| Governance pack (incl. datasheet) | `docs/final/` | |
+
+```bash
+docker compose up --build        # API :8000, stakeholder dashboard :8501, monitoring dashboard :8502, Prometheus :9090, Grafana :3000
+make test model-test dashboard-test      # pipeline, model/monitoring/retraining, and dashboard test suites
+make monitor                              # needs data/processed/ and two Python environments (see Dockerfile.monitoring)
+```
+
+Why two environments: Evidently 0.7 does not import under pandas 3, which the model stack uses, so `src/monitoring/export_scored.py` scores in the
+model environment and `src/monitoring/job.py` runs Evidently and Fairlearn in a pandas 2 environment (`requirements-monitoring.txt`).
+
+Honest status: the monitoring numbers are a **replay** of the 2025-10 to 2026-06 test window, not live traffic; the ethics review panel has not
+signed off (there is none for this coursework); the late-response model is advisory only; F3 (proxy test) is not met.
+
 ## Module 3: data pipeline
 
 Prefect DAG (`flows/ccdb_pipeline.py`), Great Expectations suites, Fairlearn bias suite, anonymiser, governance policy, hash-chained privacy audit log, 46 pytest tests and a Dockerfile.

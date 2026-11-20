@@ -12,3 +12,5 @@ mlruns/
 mlflow.db
 smoke*.db
 mlflow_ui.log
+models/challenger/
+models/archive/

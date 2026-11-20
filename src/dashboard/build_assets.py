@@ -26,6 +26,12 @@ NBINS = round(1 / BIN)
 DIMS = {"region": "Region", "tag_older": "Older American", "tag_servicemember": "Servicemember", "tag_group": "Tag group"}
 
 
+def _links() -> dict:
+    """Public URLs, filled in after deployment (src/dashboard/links.json). Pages show a link only when it is set."""
+    p = C.ROOT / "src" / "dashboard" / "links.json"
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
 def _j(name):
     return json.loads((R / name).read_text())
 
@@ -124,6 +130,53 @@ def examples(te, relief) -> list:
     return out
 
 
+def deployed_criteria(facts) -> list:
+    """The Module 4 criteria table labels the pre-registered fairness limits 'deployed' but computed them at the single global line
+    (reconciliation log C6). Recompute those six rows from the deployed-threshold audit; every verdict is unchanged."""
+    dep = facts["charter"]["deployed_region_thresholds"]["binary"]
+    limits = C.CRITERIA["fairness"]
+    rows = []
+    for c in facts["criteria"]:
+        name = c["criterion"]
+        key = "older_american" if name.startswith("Older American:") else "servicemember" if name.startswith("Servicemember:") else None
+        if key is None:
+            rows.append(c)
+            continue
+        metric, ok = (("disparate_impact_ratio", lambda v: v >= limits["disparate_impact_min"]) if "disparate" in name else
+                      ("equalized_odds_difference", lambda v: v <= limits["equalized_odds_diff_max"]) if "equalized" in name else
+                      ("demographic_parity_difference", lambda v: v <= limits["demographic_parity_diff_max"]))
+        v = float(dep[key][metric])
+        assert ok(v) == c["met"], f"verdict changed at the deployed operating point: {name}"
+        rows.append({**c, "criterion": name + " (deployed lines)", "observed": v})
+    return rows
+
+
+def _feat(lime_label: str) -> str:
+    """'company_key=MT BANK' or 'company_volume_lag4 > 460' -> the plain feature label SHAP uses."""
+    import re
+    raw = re.split(r"\s*(?:<=|>=|<|>|=)", lime_label, maxsplit=1)[0].strip()
+    return PLAIN.get(raw, raw)
+
+
+def xai_agreement() -> list:
+    """Do the two local-explanation methods name the same drivers? Top-3 SHAP features against top-3 LIME features, cases A to C."""
+    shap = {c["case"][0]: c for c in _j("local_cases.json")}
+    out = []
+    for c in _j("lime_cases.json"):
+        k = c["case"][0]
+        lime_top = []
+        for lab, w in sorted(c["lime"], key=lambda x: -abs(x[1])):
+            f = _feat(lab)
+            if f not in [x["feature"] for x in lime_top]:
+                lime_top.append({"feature": f, "weight": w})
+        lime3 = lime_top[:3]
+        shap3 = [{"feature": r["feature"], "weight": r["shap"]} for r in shap[k]["top_contributions"][:3]]
+        shared = sorted({x["feature"] for x in shap3} & {x["feature"] for x in lime3})
+        out.append({"case": k, "label": c["case"][3:], "shap_top3": shap3, "lime_top3": lime3, "shared": shared,
+                    "same_first": bool(shap3 and lime3 and shap3[0]["feature"] == lime3[0]["feature"])})
+    return out
+
+
 def goals(facts, ut, untimely) -> list:
     """Module 1 goals G1-G5 against what Module 4 measured. Targets are quoted from the Vision Document (Table 1)."""
     y = ut[C.SECONDARY].to_numpy()
@@ -139,14 +192,16 @@ def goals(facts, ut, untimely) -> list:
         {"id": "G2", "goal": "Predict missed deadlines", "target": "Top 10% of scores capture >= 40% of untimely responses",
          "observed": f"Top 10% capture {cap10:.0%} (test)", "status": "Met, advisory", "note": "Late-response model is unstable over time (validation ROC-AUC 0.759, test 0.892)."},
         {"id": "G3", "goal": "Detect service-failure surges", "target": "Weekly volume >= 3 SD above baseline flagged within 7 days",
-         "observed": "Built in Module 3 (baseline and surge flags)", "status": "Not re-assessed", "note": "Outside the Module 4 model; shown here as context only."},
+         "observed": "Weekly baseline and surge flags built in Module 3", "status": "Implemented, not back-tested",
+         "note": "The public file has no incident log, so there is no true surge to measure false alerts against (reconciliation log C5)."},
         {"id": "G4", "goal": "Fair prioritisation", "target": "Equal-opportunity gap <= 0.05 for Older American and Servicemember",
          "observed": f"Older American {max(f2['older_american']['tpr_gap']['gap'], f2['older_american']['fpr_gap']['gap']):.3f} (interval reaches "
                      f"{max(f2['older_american']['tpr_gap']['ci95'][1], f2['older_american']['fpr_gap']['ci95'][1]):.3f}); Servicemember "
                      f"{max(f2['servicemember']['tpr_gap']['gap'], f2['servicemember']['fpr_gap']['gap']):.3f}", "status": "Partly met",
          "note": "Four-group comparison fails (0.061); proxy test F3 not met."},
         {"id": "G5", "goal": "Better triage policy", "target": "Risk-ranked queue cuts untimely responses >= 15% at fixed staffing",
-         "observed": "Triage simulation not yet run", "status": "Not assessed", "note": "No claim is made about operational savings."},
+         "observed": "Not attempted", "status": "Descoped", "note": "The public file has no queue or staffing data, so any reduction would be an assumption, not a result. "
+         "No claim is made about operational savings (reconciliation log C5)."},
     ]
 
 
@@ -168,7 +223,7 @@ def main():
     ut = D.split(d, C.SECONDARY)["test"]
     perf_u = facts["champion_calibrated_test"][C.SECONDARY]
     data = {
-        "meta": {"records_in_scope": len(d), "test_window": ["2025-10-01", C.WINDOW_END], "n_test": len(y), "relief_model": relief["algorithm"],
+        "meta": {"records_in_scope": len(d), "records_before_suppression": 535601, "links": _links(), "test_window": ["2025-10-01", C.WINDOW_END], "n_test": len(y), "relief_model": relief["algorithm"],
                  "trained_at": relief["trained_at"], "review_capacity": C.REVIEW_CAPACITY, "global_threshold": float(relief["review_threshold"]),
                  "region_thresholds": {k: float(v) for k, v in relief["region_thresholds"].items()}, "bin_width": BIN,
                  "source": "Consumer Financial Protection Bureau, Consumer Complaint Database (public)"},
@@ -181,7 +236,8 @@ def main():
         "shap_global": [{"label": r["label"], "share": float(r["share"])} for r in facts["shap_global"]],
         "quarterly": facts["sensitivity"]["quarterly"], "perturbations": facts["sensitivity"]["perturbations"],
         "monthly": monthly_series(d[d["week_start"] <= pd.Timestamp(C.WINDOW_END)]),
-        "criteria": facts["criteria"],
+        "criteria": deployed_criteria(facts),
+        "xai_agreement": xai_agreement(),
         "fairness": {
             "dims": DIMS,
             "hist": {k: hist_by_group(v, y, s) for k, v in groups.items()},

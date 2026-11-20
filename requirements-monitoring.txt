@@ -1,0 +1,10 @@
+# Evidently drift job (stage 2 of monitoring): exactly as tested (Python 3.11).
+# Separate from requirements-model.txt because Evidently 0.7 does not import under pandas 3, which the model stack uses.
+pandas==2.3.3
+numpy==2.3.5
+pyarrow==26.0.1
+scikit-learn==1.9.1
+scipy==1.17.1
+fairlearn==0.15.0
+evidently==0.7.23
+pytest==9.2.0

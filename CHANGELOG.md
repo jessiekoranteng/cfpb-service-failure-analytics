@@ -1,6 +1,19 @@
 # Changelog
 All notable changes follow Semantic Versioning and Keep a Changelog.
 
+## [1.0.0] - 2026-11-20
+### Added
+- API explanation store: every `/predict` is recorded in a hash-chained log (`src/modeling/explanation_store.py`); `GET /explanations/{id}`, `GET /explanations/verify`; Prometheus `GET /metrics`.
+- Monitoring (`src/monitoring/`, `monitoring_app/`): two-stage job (model environment scores, pandas-2 environment runs Evidently and Fairlearn), alert rules traced to the Model Card, F2 gaps by tag with bootstrap intervals and by product, company-size tier and region, monitoring dashboard.
+- Retraining (`src/modeling/retrain.py`): trigger rules, challenger build, twelve promotion gates, MLflow `challenger` alias, approver-gated promotion with archive. A dry run on historical windows produced a challenger that was more accurate but was blocked by the regional fairness gate.
+- `docker-compose.yml` (API, stakeholder dashboard, monitoring dashboard, Prometheus, Grafana; pipeline and monitor-job on demand), `Dockerfile.monitoring`, `requirements-monitoring.txt`, Prometheus alert rules, Grafana dashboard.
+- CI: monitoring job (pandas 2 and Evidently), dashboards job covers the monitoring app, compose smoke test.
+- `docs/final/`: reconciliation log (15 cross-module corrections) and the governance pack.
+### Changed
+- Dashboard: record count is the published 535,578 (not the 535,601 pre-suppression extract); the G5 claim is removed (G5 descoped, G3 implemented but not back-tested); the six pre-registered fairness limits are recomputed at the deployed region lines; a SHAP-versus-LIME agreement table is added.
+### Known issues
+- Ethics panel sign-off is still pending; there is no panel for this coursework. F3 (proxy test) remains unmet. The relief model still does not beat the logistic baseline.
+
 ## [0.5.0] - 2026-11-02
 ### Added
 - Module 5 stakeholder dashboard (`app/dashboard.py`, `app/views/`): Overview, What drives predictions, Try a complaint (what-if with side-by-side scenarios and one-field sweeps), Ethical Compliance (Fairlearn metrics from published aggregates, interactive review-line slider, bias found/addressed, proxy test) and Limits and transparency.
