@@ -1,0 +1,30 @@
+# Live-traffic alert rules for the scoring API. They mirror the replay thresholds in src/monitoring/thresholds.py
+# (Model Card section 10): flagged share outside 15-25%, unseen-value share above 5%. A rule fires only after enough traffic to mean something.
+groups:
+  - name: risk-api
+    rules:
+      - alert: ApiDown
+        expr: up{job="risk-api"} == 0
+        for: 2m
+        labels: {severity: hard}
+        annotations: {summary: "Scoring API is not answering; reviewers fall back to manual triage (incident plan, scenario 1)."}
+      - alert: FlaggedShareOutOfBand
+        expr: |
+          (sum(increase(risk_api_predictions_total{flagged="true"}[6h])) / sum(increase(risk_api_predictions_total[6h])) < 0.15
+            or sum(increase(risk_api_predictions_total{flagged="true"}[6h])) / sum(increase(risk_api_predictions_total[6h])) > 0.25)
+          and sum(increase(risk_api_predictions_total[6h])) > 200
+        for: 30m
+        labels: {severity: warn}
+        annotations: {summary: "Share of requests flagged for review is outside 15% to 25% over 6 hours."}
+      - alert: UnseenValuesHigh
+        expr: |
+          sum(increase(risk_api_unseen_category_requests_total[6h])) / sum(increase(risk_api_predictions_total[6h])) > 0.05
+          and sum(increase(risk_api_predictions_total[6h])) > 200
+        for: 30m
+        labels: {severity: warn}
+        annotations: {summary: "More than 5% of requests contain a company or category never seen in training (ROC-AUC falls to 0.63 for these)."}
+      - alert: ScoringSlow
+        expr: histogram_quantile(0.95, sum(rate(risk_api_predict_seconds_bucket[10m])) by (le)) > 0.5
+        for: 10m
+        labels: {severity: warn}
+        annotations: {summary: "95th percentile scoring time is above 0.5 seconds."}
