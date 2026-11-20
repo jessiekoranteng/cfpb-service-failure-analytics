@@ -5,13 +5,22 @@
 POST /predict scores one complaint at intake. The service never receives names, account numbers, narratives or
 protected attributes: only the eight categorical/numeric intake fields below.
 """
+import os
+import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Histogram, generate_latest
 from pydantic import BaseModel, ConfigDict, Field
 
 from src.modeling import config as C
+from src.modeling.explanation_store import ExplanationStore
 from src.modeling.scoring import Scorer
+
+# Prometheus metrics: counts only, never inputs. The monitor and any Prometheus server can scrape /metrics.
+PREDICTIONS = Counter("risk_api_predictions_total", "Scores issued", ["flagged"])
+UNSEEN = Counter("risk_api_unseen_category_requests_total", "Requests containing a category not seen in training")
+LATENCY = Histogram("risk_api_predict_seconds", "Time to score one complaint", buckets=(0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5))
 
 STATE: dict = {}
 
@@ -39,6 +48,7 @@ class Reason(BaseModel):
 
 
 class Prediction(BaseModel):
+    explanation_id: str | None = Field(None, description="Id of the stored explanation; GET /explanations/{id} returns it for audit")
     relief_probability: float
     untimely_probability: float
     flag_for_review: bool
@@ -52,6 +62,8 @@ class Prediction(BaseModel):
 @asynccontextmanager
 async def lifespan(app):
     STATE["scorer"] = Scorer.from_dir()
+    path = os.environ.get("EXPLANATION_STORE_PATH")
+    STATE["store"] = ExplanationStore(path) if path else None   # unset = stateless (tests, plain local run)
     yield
     STATE.clear()
 
@@ -77,5 +89,39 @@ def predict(c: Complaint):
     if "scorer" not in STATE:
         raise HTTPException(503, "models not loaded")
     sc = STATE["scorer"]
-    r = sc.score(c.model_dump())
-    return Prediction(**r, model_versions=sc.model_versions())
+    t0 = time.perf_counter()
+    inputs = c.model_dump()
+    r = sc.score(inputs)
+    versions = sc.model_versions()
+    store = STATE.get("store")
+    rid = store.append(inputs, r, versions) if store else None
+    PREDICTIONS.labels(flagged=str(r["flag_for_review"]).lower()).inc()
+    if r["unseen_values"]:
+        UNSEEN.inc()
+    LATENCY.observe(time.perf_counter() - t0)
+    return Prediction(**r, model_versions=versions, explanation_id=rid)
+
+
+@app.get("/explanations/verify")
+def verify_explanations():
+    """Integrity check of the explanation store's hash chain."""
+    if not STATE.get("store"):
+        raise HTTPException(503, "explanation store is not enabled (set EXPLANATION_STORE_PATH)")
+    return STATE["store"].verify()
+
+
+@app.get("/explanations/{explanation_id}")
+def get_explanation(explanation_id: str):
+    """The stored record for one earlier score: inputs, model versions, probabilities, flag and reason codes."""
+    if not STATE.get("store"):
+        raise HTTPException(503, "explanation store is not enabled (set EXPLANATION_STORE_PATH)")
+    rec = STATE["store"].get(explanation_id)
+    if rec is None:
+        raise HTTPException(404, "no stored explanation with that id (it may be past the retention period)")
+    return rec
+
+
+@app.get("/metrics")
+def metrics():
+    """Prometheus text format."""
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
