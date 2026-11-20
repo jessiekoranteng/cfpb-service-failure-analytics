@@ -1,0 +1,63 @@
+{
+ "full": {
+  "removed": [],
+  "roc_auc": 0.7908613290229389,
+  "pr_auc": 0.30542849569844654,
+  "pr_auc_lift": 2.6997313981480926,
+  "flag_share": 0.1849530777795451,
+  "recall_at_flag": 0.5008904302183897,
+  "precision_at_flag": 0.3063868822382754,
+  "region_selection_ratio": 0.49691820644484064,
+  "f2_older_american": {
+   "tpr_gap": 0.05094930504117462,
+   "fpr_gap": 0.03238741473827364
+  },
+  "f2_servicemember": {
+   "tpr_gap": 0.026130938829795447,
+   "fpr_gap": 0.007615247224903282
+  }
+ },
+ "no_company": {
+  "removed": [
+   "company_key",
+   "company_volume_lag4"
+  ],
+  "roc_auc": 0.6379742149836378,
+  "pr_auc": 0.17261764235093116,
+  "pr_auc_lift": 1.5257949912742117,
+  "flag_share": 0.2420550341975505,
+  "recall_at_flag": 0.3744493392070485,
+  "precision_at_flag": 0.17501204713716212,
+  "region_selection_ratio": 0.19067621126198545,
+  "f2_older_american": {
+   "tpr_gap": 0.06563842534094377,
+   "fpr_gap": 0.023149501291398367
+  },
+  "f2_servicemember": {
+   "tpr_gap": 0.008024995163881887,
+   "fpr_gap": 0.0141092150629549
+  }
+ },
+ "no_company_or_subissue": {
+  "removed": [
+   "company_key",
+   "company_volume_lag4",
+   "Sub-issue"
+  ],
+  "roc_auc": 0.5944999067165354,
+  "pr_auc": 0.14823605901091666,
+  "pr_auc_lift": 1.3102822705993529,
+  "flag_share": 0.2241238534542177,
+  "recall_at_flag": 0.30883869153622645,
+  "precision_at_flag": 0.15589515518546557,
+  "region_selection_ratio": 0.10470360298795227,
+  "f2_older_american": {
+   "tpr_gap": 0.02968563461287088,
+   "fpr_gap": 0.02497540646470986
+  },
+  "f2_servicemember": {
+   "tpr_gap": 0.03086649638267136,
+   "fpr_gap": 0.017457924548216458
+  }
+ }
+}
