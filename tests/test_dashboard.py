@@ -146,5 +146,28 @@ def test_no_page_makes_a_recommendation_or_decision_claim():
 def test_goal_scorecard_covers_g1_to_g5_and_reports_misses():
     g = {x["id"]: x for x in DATA["goals"]}
     assert list(g) == ["G1", "G2", "G3", "G4", "G5"]
-    assert g["G1"]["status"] == "Partly met" and g["G5"]["status"] == "Not assessed"
+    assert g["G1"]["status"] == "Partly met" and g["G5"]["status"] == "Descoped" and g["G3"]["status"] == "Implemented, not back-tested"
     assert "66%" in g["G2"]["observed"]
+
+
+def test_record_count_is_the_published_table_not_the_pre_suppression_extract():
+    assert DATA["meta"]["records_in_scope"] == 535578 and DATA["meta"]["records_before_suppression"] == 535601
+    for p in (ROOT / "app" / "views").glob("*.py"):
+        assert "535,601 public" not in p.read_text() and "535,601 in-scope" not in p.read_text()
+
+
+def test_no_page_claims_the_dropped_g5_goal():
+    text = (ROOT / "app" / "views" / "overview.py").read_text()
+    assert "supports goals" not in text and "G5 (better triage)" not in text
+
+
+def test_fairness_limits_are_computed_at_the_deployed_lines():
+    rows = {c["criterion"]: c for c in DATA["criteria"]}
+    older = rows["Older American: disparate impact ratio (deployed lines)"]
+    assert older["observed"] == pytest.approx(0.8585, abs=5e-4) and older["met"]       # single line gave 0.8688
+    assert len([c for c in DATA["criteria"] if "(deployed lines)" in c["criterion"]]) == 6
+
+
+def test_xai_agreement_covers_shap_and_lime_for_each_case():
+    assert [a["case"] for a in DATA["xai_agreement"]] == ["A", "B", "C"]
+    assert all(len(a["shap_top3"]) == 3 and len(a["lime_top3"]) == 3 and a["shared"] for a in DATA["xai_agreement"])
