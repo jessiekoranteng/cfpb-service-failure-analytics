@@ -89,6 +89,8 @@ jobs:
           for i in $(seq 1 30); do curl -sf http://localhost:8000/health && break || sleep 2; done
           curl -sf http://localhost:8000/health
       - name: Compose stack - API serves, Prometheus scrapes it, the audit log verifies
+        env:
+          PIPELINE_PSEUDONYM_KEY: ci-only-placeholder
         run: |
           docker rm -f api >/dev/null 2>&1 || true
           docker compose up -d --build api prometheus monitoring-dashboard
