@@ -1,0 +1,11 @@
+{
+ "decision": "NO RETRAIN TRIGGERED",
+ "reasons": [],
+ "escalations": [],
+ "watch": [
+  "psi_company hard in 2025-10"
+ ],
+ "summary": "No trigger fired. Watch items: psi_company hard in 2025-10.",
+ "evaluated_at": "2026-11-20T00:08:37+00:00",
+ "champion_trained_at": "2026-11-01T22:13:43+00:00"
+}
