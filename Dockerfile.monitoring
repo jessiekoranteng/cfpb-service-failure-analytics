@@ -1,0 +1,34 @@
+# Monitoring toolbox and dashboard (Final Project)
+# Build:  docker build -f Dockerfile.monitoring -t cfpb-monitoring .
+# Run the dashboard:  docker run --rm -p 8502:8502 cfpb-monitoring
+# Run the two-stage job (needs data/processed mounted):  docker run --rm -v "$PWD/data:/app/data" -v "$PWD/monitoring_app/assets:/app/monitoring_app/assets" \
+#                                                          cfpb-monitoring scripts/run_monitoring.sh
+# Two virtualenvs on purpose: Evidently 0.7 does not import under pandas 3 (model stack), so the drift job gets its own pandas 2 environment.
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 MPLBACKEND=Agg \
+    MODEL_PY=/opt/model/bin/python MON_PY=/opt/mon/bin/python
+
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 && rm -rf /var/lib/apt/lists/* \
+ && python -m venv /opt/model && python -m venv /opt/mon
+
+COPY requirements-api.txt requirements-model.txt requirements-monitoring.txt ./
+RUN /opt/model/bin/pip install -r requirements-model.txt streamlit==1.66.1 plotly==7.1.0 \
+ && /opt/mon/bin/pip install -r requirements-monitoring.txt
+
+COPY src ./src
+COPY api ./api
+COPY models ./models
+COPY monitoring_app ./monitoring_app
+COPY scripts ./scripts
+COPY pyproject.toml .
+COPY .streamlit .streamlit
+
+RUN useradd --create-home --uid 10001 monitor && chown -R monitor /app
+USER monitor
+EXPOSE 8502
+# The image fails to build if either environment cannot import its code
+RUN /opt/model/bin/python -c "import src.monitoring.export_scored, src.modeling.retrain, streamlit" \
+ && /opt/mon/bin/python -c "import src.monitoring.job, evidently, fairlearn"
+CMD ["/opt/model/bin/streamlit", "run", "monitoring_app/dashboard.py", "--server.port=8502", "--server.address=0.0.0.0"]

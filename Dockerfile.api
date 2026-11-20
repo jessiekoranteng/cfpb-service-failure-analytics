@@ -23,7 +23,9 @@ COPY src/modeling ./src/modeling
 COPY api ./api
 COPY models/risk_monetary_relief.joblib models/risk_untimely.joblib ./models/
 
-RUN useradd --create-home --uid 10001 scorer && chown -R scorer /app
+RUN useradd --create-home --uid 10001 scorer && mkdir -p /data/explanations && chown -R scorer /app /data
+ENV EXPLANATION_STORE_PATH=/data/explanations/explanations.jsonl
+VOLUME /data/explanations
 USER scorer
 EXPOSE 8000
 

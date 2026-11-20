@@ -1,0 +1,73 @@
+# Whole system: pipeline (Module 3), scoring API (Module 4), dashboards (Module 5, Final Project), monitoring.
+#
+#   docker compose up --build                    # API, stakeholder dashboard, monitoring dashboard, Prometheus, Grafana
+#   docker compose --profile pipeline run --rm pipeline      # the data pipeline (needs data/raw/complaints.csv.zip and PIPELINE_PSEUDONYM_KEY)
+#   docker compose --profile jobs run --rm monitor-job       # two-stage drift, performance and fairness job (needs data/processed/)
+#
+# Ports: API 8000 (/docs, /metrics) | stakeholder dashboard 8501 | monitoring dashboard 8502 | Prometheus 9090 | Grafana 3000 (admin / the password below)
+name: cfpb-risk
+services:
+  api:
+    build: {context: ., dockerfile: Dockerfile.api}
+    ports: ["8000:8000"]
+    volumes: ["explanations:/data/explanations"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health').status == 200 else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+  dashboard:
+    build: {context: ., dockerfile: Dockerfile.dashboard}
+    ports: ["8501:8501"]
+    restart: unless-stopped
+
+  monitoring-dashboard:
+    build: {context: ., dockerfile: Dockerfile.monitoring}
+    ports: ["8502:8502"]
+    volumes: ["./monitoring_app/assets:/app/monitoring_app/assets:ro"]
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    ports: ["9090:9090"]
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+    depends_on: {api: {condition: service_healthy}}
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.6.0
+    ports: ["3000:3000"]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-change-me-before-sharing}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on: [prometheus]
+    restart: unless-stopped
+
+  # ---- on demand ----
+  pipeline:
+    profiles: ["pipeline"]
+    build: {context: ., dockerfile: Dockerfile}
+    environment:
+      PIPELINE_PSEUDONYM_KEY: ${PIPELINE_PSEUDONYM_KEY:?set PIPELINE_PSEUDONYM_KEY to run the pipeline}
+    volumes: ["./data/raw:/app/data/raw:ro", "./data/processed:/out"]
+
+  monitor-job:
+    profiles: ["jobs"]
+    build: {context: ., dockerfile: Dockerfile.monitoring}
+    command: ["scripts/run_monitoring.sh", "--store", "/store/explanations.jsonl"]
+    volumes:
+      - ./data:/app/data
+      - ./monitoring_app/assets:/app/monitoring_app/assets
+      - explanations:/store:ro
+
+volumes:
+  explanations:
