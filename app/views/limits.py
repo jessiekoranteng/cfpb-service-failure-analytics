@@ -41,12 +41,23 @@ st.markdown(f"Quarterly ranking quality slipped from {q['roc_auc'].iloc[0]:.3f} 
 
 st.subheader("Transparency statement")
 st.markdown(
-    "- **Data:** public CFPB Consumer Complaint Database, 535,601 in-scope records. No names, account numbers or narratives enter the model or this page.\n"
+    "- **Data:** public CFPB Consumer Complaint Database, 535,578 published records (535,601 in scope, 23 suppressed for privacy). No names, account numbers or narratives enter the model or this page.\n"
     "- **Models:** gradient-boosted trees (LightGBM), probability-calibrated; selected on validation, scored once on the final window.\n"
     "- **Protected tags** (Older American, Servicemember) are never model inputs. They are used only to audit.\n"
     "- **Human in the loop:** the API returns a score, a flag and reasons. It never returns a decision or touches a statutory deadline (Charter F4).\n"
     "- **Everything is logged:** 51 MLflow runs, a registered champion, and a Model Card and Fairness Metrics Report in the repository.")
 
+st.subheader("Audit trail and monitoring")
+links = d["meta"].get("links", {})
+st.markdown(
+    "- **Every score is recorded.** The live API stores each request's nine inputs, the model version, the score, the flag and the three reasons in a "
+    "hash-chained log with 90-day retention, so any score can be looked up later by its id and any edit to the log is detected.\n"
+    "- **The model is watched monthly** for ranking quality, calibration, drift in who is complaining, regional flag rates and the charter fairness gaps. "
+    "Each signal has a warning and a hard limit, and a hard breach opens an incident.\n"
+    "- **Retraining is gated.** A challenger must match the champion on accuracy and calibration and must not worsen any fairness gap; only a named "
+    "approver can promote it. In the rehearsal, the challenger was *more* accurate but was blocked because its regional flag rates fell out of balance.")
+if links.get("monitoring_dashboard"):
+    st.link_button("Open the monitoring dashboard", links["monitoring_dashboard"])
 st.subheader("All 17 pre-registered checks")
 crit = pd.DataFrame(d["criteria"])
 st.caption(f"{int(crit['met'].sum())} of {len(crit)} met. The misses are shown, not removed.")

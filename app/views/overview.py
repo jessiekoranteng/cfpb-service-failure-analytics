@@ -10,9 +10,9 @@ perf, cap, dep = d["performance"], d["performance"]["capacity"], d["performance"
 st.title("Which complaints deserve a closer look first?")
 st.markdown(
     "Banks and payment companies receive far more service-failure complaints than reviewers can read closely. This dashboard shows what a "
-    "risk model built on **535,601 public CFPB complaints** (checking/savings and money-transfer products, 2020 to mid-2026) can and cannot do "
-    "to help a reviewer decide *where to look first*. It supports goals G1 (relief risk), G2 (missed deadlines), G4 (fair prioritisation) and G5 "
-    "(better triage) of the project Vision Document.")
+    "risk model built on **535,578 public CFPB complaints** (checking/savings and money-transfer products, 2020 to mid-2026) can and cannot do "
+    "to help a reviewer decide *where to look first*. It speaks to goals G1 (relief risk), G2 (missed deadlines) and G4 (fair prioritisation) of the project "
+    "Vision Document. G3 (surge detection) is implemented but not back-tested, and G5 (triage savings) was descoped: see the scorecard below.")
 banner()
 
 c = st.columns(4)

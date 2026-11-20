@@ -30,8 +30,17 @@ with c2:
                 "- Because company dominates, the model is better at *ranking known companies* than judging a new one. An unseen company drops ROC-AUC from 0.79 to 0.63.\n"
                 "- A high score is a reason to look, never a reason to decide.")
 
+st.subheader("Do two explanation methods agree?")
+st.caption("SHAP and LIME explain a single score in different ways, so the same complaint is run through both. Shown: each method's three strongest facts.")
+ag = d["xai_agreement"]
+rows = [{"Complaint": f"{a['case']}. {a['label']}", "SHAP top 3": ", ".join(x["feature"] for x in a["shap_top3"]),
+         "LIME top 3": ", ".join(x["feature"] for x in a["lime_top3"]), "Shared": f"{len(a['shared'])} of 3", "Same first driver": "yes" if a["same_first"] else "no"} for a in ag]
+st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+st.caption("Company and sub-issue (or issue) appear in both lists for every case, so the main story is stable. The order of the smaller drivers differs, "
+           "and for complaint B LIME puts company volume first where SHAP puts company first: treat the order of smaller drivers as indicative, not exact.")
+
 st.subheader("Four worked complaints")
-st.caption("Each card shows the three facts that moved that complaint's score most. LIME, a second explanation method, agreed with SHAP on the top two drivers for complaint A. For complaint B it ranked company volume first, so treat the order of smaller drivers as indicative.")
+st.caption("Each card shows the three facts that moved that complaint's score most.")
 cols = st.columns(2)
 for i, e in enumerate(d["examples"]):
     with cols[i % 2]:
